@@ -1,0 +1,45 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+ 
+public class Main3 {
+ 
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+ 
+		int N = in.nextInt();
+		String[] s = new String[N];
+		
+		//System.out.println(Arrays.toString(s));
+		for(int i = 0;i<N;i++) {
+			s[i]=in.next();
+			
+			int num=0;
+			int sum=0;
+			for(int j = 0;j<s[i].length();j++) {
+				
+				if(s[i].charAt(j)=='O') {
+					num++;
+				}
+				else {
+					num = 0;
+				}
+				sum += num;
+		}
+		System.out.println(sum);
+		
+		//System.out.println(Arrays.toString(s));
+				
+		}
+		
+		in.close();
+		
+	}
+}
+
+//발상은 비슷했음 split 이짓거리하다가
+//80자리 까지 있는거 보고 다른 방향으로 생각, 막판에 결국 해설 봤는데도
+//수의 흐름을 이해하는데 좀 걸림
