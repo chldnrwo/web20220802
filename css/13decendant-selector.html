@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        p{
+            color: blue;
+        }
+        .error>p{
+            text-decoration: line-through;
+        }
+        /* 자손 선택자 */
+        .error p {
+            border: 2px solid;
+        }
+    </style>
+</head>
+<body>
+    <!-- decendant(자손) 셀렉터라는 뜻 -->
+    <!-- .note>.error>p>lorem^^^.error>.note>p>lorem -->
+    <div class="note">
+        <div class="error">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores iste, atque itaque animi enim numquam ipsam sit, reprehenderit at ea quia ipsa tempore quaerat iure iusto quo. Quibusdam, earum numquam!
+            </p>
+        </div>
+    </div>
+    <div class="error">
+        <div class="note">
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quibusdam, architecto voluptas? Ad praesentium autem enim animi omnis necessitatibus corporis architecto voluptate, velit asperiores placeat incidunt illo inventore vero officia dolorem!
+            </p>
+        </div>
+    </div>
+</body>
+</html>

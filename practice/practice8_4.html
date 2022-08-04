@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .ii{
+            background-color: blue;
+        }
+        .oo{
+            border: 3px solid;
+        }
+        #kk{
+            background-color: red;
+        }
+        #jj{
+            border: 3px solid yellow;
+        }
+        #kk#jj{
+            text-align: center;
+        }
+        /* id는 class에 비해 제약이 심하다
+        두개 연속 같은거 안됨 */
+        [href]{
+            border: 3px solid black;
+        }
+        [title="구글"]{
+            font-size: 200%;
+        }
+        div p{
+            background-color: bisque;
+        }
+        div>p{
+            background-color: aqua;
+        }
+        h1:hover{
+            background-color: black;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css" integrity="sha512-XWTTruHZEYJsxV3W/lSXG1n3Q39YIWOstqvmFsdNEEQfHoZ6vm6E9GK2OrF6DSJSpIbRbi+Nn0WDPID9O7xB2Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <h1 id="jj">
+        Lorem, ipsum.
+    </h1>
+    <h1 id="kk">
+        Ipsum, ea.
+    </h1>
+    <h1 class="ii">
+        Fuga, excepturi?
+    </h1>
+    <h1 class="oo">
+        Ipsam, obcaecati!
+    </h1>
+    <h1 class="ii oo">
+        Consequuntur, enim?
+    </h1>
+    <h1 id="kk jj">
+        Perspiciatis, deserunt.
+    </h1>
+    <h1>
+        Explicabo, facilis.
+    </h1>
+    <h1>
+        Illum, consectetur?
+    </h1>
+    <h1>
+        A, sapiente.
+    </h1>
+    <h1>
+        Doloribus, alias?
+    </h1>
+    <p id="jj">
+        Lorem, ipsum.
+    </p>
+    <p id="kk">
+        Dolores, sunt.
+    </p>
+    <p class="ii">
+        Unde, autem!
+    </p>
+    <p class="oo">
+        Sequi, ab.
+    </p>
+    <a href="https://www.naver.com" title="네이버" target="_blank">
+        Lorem, ipsum dolor.
+    </a>
+    <a href="https://www.google.com" title="구글">
+        Libero, dolore tempora!
+    </a>
+    <a href="https://www.daum.net" title="다음">
+        Cupiditate, voluptatem at.
+    </a>
+    <div class="bb">
+        <div class="aa">
+            <p>
+                Lorem, ipsum.
+            </p>
+        </div>
+    </div>
+    <div class="aa">
+        <hi class="bb">
+            <p>
+                Lorem, ipsum.
+            </p>
+        </hi>
+    </div>
+    <table class="table table-striped">
+        <tr>
+            <td>
+                Lorem, ipsum.
+            </td>
+            <td>
+                Sit, quos.
+            </td>
+            <td>
+                Mollitia, earum?
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Lorem, ipsum.
+            </td>
+            <td>
+                Iste, laboriosam!
+            </td>
+            <td>
+                Harum, voluptatem!
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Lorem, ipsum.
+            </td>
+            <td>
+                Rerum, voluptatem.
+            </td>
+            <td>
+                Corporis, consequatur.
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

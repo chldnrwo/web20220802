@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        p{
+            text-decoration: underline;
+        }
+        .error>p{
+            background-color: yellow;
+        }
+        div>p{
+            border: 3px solid;
+        }
+    </style>
+</head>
+<body>
+    <!-- element를 입력안할 경우 디폴트는 div -->
+    <!-- .note>.error>p>lorem -->
+    <div class="note">
+        <div class="error">
+            <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab quam cupiditate mollitia sunt, distinctio laudantium numquam vel aperiam explicabo voluptatem quisquam ipsum est quia quaerat vero minima voluptate veniam! Nihil.
+            </p>
+        </div>
+    </div>
+    <!-- .error>.note>p>lorem -->
+    <div class="error">
+        <div class="note">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate impedit numquam nulla temporibus quibusdam quos assumenda labore eius, quia excepturi facere suscipit maxime odio, rerum optio quidem voluptatibus ex voluptas.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

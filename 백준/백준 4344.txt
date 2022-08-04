@@ -1,0 +1,43 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+ 
+public class Main3 {
+ 
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+ 
+		int N = in.nextInt();
+		int[] arr = new int[N];
+		
+		for(int i=0;i<N;i++) {
+			int M = in.nextInt();
+			int[] arr2 = new int[M];
+			int total=0;
+			float avg=0;
+			int cnt=0;
+			float per=0;
+			for(int j=0;j<M;j++){
+				arr2[j] = in.nextInt();
+				total+=arr2[j];			
+				}
+			avg=total/(float)M;
+			for(int k=0;k<M;k++) {
+				if(arr2[k]>avg) {
+					cnt++;
+				}
+				per=cnt/(float)M*100;
+			}
+			System.out.println(String.format("%.3f", per)+"%");
+		}		
+		in.close();	
+	}
+}
+
+//이차원 배열 써보자 -> 2차원 배열 쓸 필요도 없었다
+//확인용 System.out.println(Arrays.toString(s));
+//또 5개 입력했는데 4개만 출력됐다 -> 이클립스에선 4개만 출력 됐는데 백준에선 맞았다 해줌
+//소수점 끊는거 찾느라 시간 낭비
