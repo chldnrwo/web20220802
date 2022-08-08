@@ -1,0 +1,48 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main3 {
+	 
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int N = in.nextInt();
+		d(N);
+		System.out.println(d(N));
+	}
+ 
+ 
+ 
+	public static int d(int number){
+		int sum = 0; //결과값
+		int cnt1; //카운팅할거
+		int cnt2;
+		int cnt3=0;
+		if(number<100) {
+			sum = number;
+		}
+		else if(100<=number&number<=1000) {
+			for(int i=100;i<=number;i++){
+				cnt1 = (i/100) - ((i%100)/10);
+				cnt2 = ((i%100)/10) - ((i%10)); 
+				if(cnt1==cnt2) {
+					cnt3++;
+				}
+			}			
+			sum=99+cnt3;
+		}
+		
+		
+		return sum;
+	}
+}    
+
+//1~N사이의 한수 구하기
+//십의자리 수까지는 다 한수 백의 자리 수부터 드물어짐
+//백의 자리 최초의 한수는 111
+//백의 자리 수 한수는 총 45
+//cnt를 하나만 더햇네
+//생각보다 쉬웠던 문제, for문 안쓸려다가 씀

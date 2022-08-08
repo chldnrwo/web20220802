@@ -6,8 +6,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&amp;display=swap">
     <style>
         .parent1{
-            display: flex;
-                
+            display: flex;   
         }
         .menu{
             display: flex;
@@ -15,11 +14,13 @@
         .menu>div{
             font-size: 18px;
             font-weight: bold;
-            padding: 8px 16px;
+            padding: 20px 16px;
         }
         .parent1>div{
             font-size: 18px;
             font-weight: bold;
+            height: 75px;
+            
         } 
         .menu>div:hover{
             background-color: #04AA6D;
@@ -70,20 +71,21 @@
         }
         #item1{
            margin-left: auto;
+           padding: 20px 16px;
         }
         .container2{
             display: flex;
         }
         .ad{
-            width: auto;
-            
+            box-sizing: inherit;
         }
         .sidemenu{
-            width: 300px;
+            width: 186px;
         }
         .main-container{
             background-color: gold;
             flex: 1;
+            padding: 25px 30px;
         }
     </style>
 </head>
@@ -93,13 +95,22 @@
             <img src="w3s.png" alt="" width="44.75" height="42">
         </div>
         <div class="menu">
-            <div>tutorial<i class="fa-solid fa-caret-down"></i></div>
-            <div>reference<i class="fa-solid fa-caret-down"></i></div>
-            <div>exercise<i class="fa-solid fa-caret-down"></i></div>
-            <div>videos</div>
+            <div>Tutorial<i class="fa-solid fa-caret-down"></i></div>
+            <div>Reference<i class="fa-solid fa-caret-down"></i></div>
+            <div>Exercise<i class="fa-solid fa-caret-down"></i></div>
+            <div>Videos</div>
+        </div>
+        <div id="item1">
+            <button class="fancy-button">Pro</button>
         </div>
         <div>
-            <button class="fancy-button">Pro</button>
+            <button class="fancy-button">Get Certified</button>
+        </div>
+        <div>
+            <button class="fancy-button">Website</button>
+        </div>
+        <div>
+            <button class="fancy-button">Log in</button>
         </div>
         
 
@@ -278,7 +289,7 @@
             </p>
         </div>
         <div class="ad">
-            <img src="게임광고.png" alt="광고이미지">
+            <img src="광고.png" alt="광고이미지">
         </div>
     </div>
 </body>

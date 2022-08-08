@@ -1,0 +1,27 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main3 {
+	 
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		//int N = in.nextInt();
+		
+		int ch = in.next().charAt(0);
+		
+		System.out.print(ch);
+		
+	}
+ 
+ 
+}    
+
+//숫자는 쉬운데
+//문자열은 배열에 인덱스 값을 줘야될것같다
+//첫째로 문자열인지 숫자인지 판별해야함
+//지식) 문자열을 int로 저장하면 아스키코드로 알아서 바뀐다
+//개고생할뻔

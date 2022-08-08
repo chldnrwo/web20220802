@@ -1,0 +1,58 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main3 {
+	 
+	public static void main(String[] args) {
+ 
+		boolean[] check = new boolean[10001];	// 1부터 10000이므로
+ 
+		for (int i = 1; i < 10001; i++){
+			int n = d(i);
+		
+			if(n < 10001){	// 10000 이 넘는 수는 필요가 없음
+				check[n] = true;
+			}
+		}
+ 
+		StringBuilder sb = new StringBuilder();
+        
+		for (int i = 1; i < 10001; i++) {
+			if (!check[i]) {	// false 인 인덱스만 출력
+				sb.append(i).append('\n');
+			}
+		}
+		System.out.println(sb);
+	}
+ 
+ 
+ 
+	public static int d(int number){
+		int sum = number;
+    
+		while(number != 0){
+			sum = sum + (number % 10); // 첫 째 자리수
+			number = number/10;	// 10을 나누어 첫 째 자리를 없앤다
+		}
+    
+		return sum;
+	}
+}    
+
+//간단한 함수 만들기 참고
+//배열 만개 만들고 만개의 결과 다 쳐넣기
+//if 4~5개로
+//자바 정리 필요
+//1~10000에서 결과값 까고 출력
+//비교 제거 메소드 추가
+//변수를 남발하는 감이 없잖아 있다
+//결과값 보고 뭐가 잘못되었나 확인, 제거가 잘 안된듯
+//배열 빼기 검색 보고 참조했는데, 출력이 안된다.
+//11부터 몬가 이상함
+//i랑 1이 바뀌어 있었음 위쪽 연산은 해결
+//생성자 배열을 구했지만 배열간의 제거가 잘 안되서 실패
+//인덱스를 써야했던거 같다
