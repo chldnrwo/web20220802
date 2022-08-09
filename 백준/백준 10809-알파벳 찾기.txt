@@ -1,0 +1,54 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main3 {
+	 
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		//int N = in.nextInt();
+		String a = in.next();
+		int num;
+		int index;
+		
+		int[] arr = new int[26];
+		
+		for(int j=0;j<26;j++) {
+			arr[j] = -1;
+		}
+		
+		for(int i=0;i<a.length();i++) {
+			num = a.charAt(i)-97;
+			index = i;
+			arr[num] = index;
+			for(int k=0;k<i;k++){
+				if(a.charAt(k)==a.charAt(i)) {
+					num = a.charAt(k)-97;
+					index = k;
+					arr[num] = index;
+					break;
+				}
+			}
+			
+		}
+		for(int j=0;j<26;j++) {
+			System.out.print(arr[j]+" ");
+		}
+		
+	}
+ 
+ 
+}    
+
+//알파벳26개와 대조하면서 값을 반화하는 문제
+//중복인 경우 최초위치를 반환
+//배열을 쓸까 연산해서 or 한글자씩 출력할까
+//배열 쓰는게 맞는거 같다
+//charAt으로 읽은 값을 아스키코드로 변환해서 계산해야 될거 같음
+//Arrays.fill()메소드는 n값으로 배열을 초기화 시켜줌
+//-1 초기화 안되서 문자열 -1넣고 초기화함
+//답은 제대로 나옴 중복 문자 처리 안함
+//덮어쓰고 break문으로 중복문자 처리함
