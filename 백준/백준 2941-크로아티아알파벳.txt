@@ -1,0 +1,64 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main3 {
+	 
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		//int N = in.nextInt();
+		String a = in.next();
+		//String[] arr = new String[a.length()];
+		String[] arr=new String[a.length()];
+		char b;
+		int numCheck;
+		int cnt=0;
+		for(int i=0;i<a.length();i++) {
+			numCheck=a.charAt(i);
+			b = (char)numCheck;
+			arr[i]=String.valueOf(b);
+		}
+
+		for(int i=0;i<a.length()-1;i++) {
+			if(arr[i].equals("c")&&arr[i+1].equals("=")) {
+				cnt++;
+			}
+			if(arr[i].equals("c")&&arr[i+1].equals("-")) {
+				cnt++;
+			}
+			if(arr[i].equals("d")&&arr[i+1].equals("-")) {
+				cnt++;
+			}
+			if(arr[i].equals("l")&&arr[i+1].equals("j")) {
+				cnt++;
+			}
+			if(arr[i].equals("n")&&arr[i+1].equals("j")) {
+				cnt++;
+			}
+			if(arr[i].equals("s")&&arr[i+1].equals("=")) {
+				cnt++;
+			}
+			if(arr[i].equals("z")&&arr[i+1].equals("=")) {
+				cnt++;
+			}
+		}
+		for(int i=0;i<a.length()-2;i++) {
+			if(arr[i].equals("d")&&arr[i+1].equals("z")
+					&&arr[i+2].equals("=")) {
+				cnt++;
+			}
+		}
+		System.out.println(a.length()-cnt);
+	}	
+}
+
+// =,-,j읽어내면 될거같은데
+//크로아티아 알파벳 말고 일반 알파벳도 있었네
+//다른건 두글자라 쉬운데 dz=가 문제
+//개노가다로 품 .equal() 메소드 습득
+//arrayindexoutofbound에러
+//arr[i+1], arr[i+2]가 없는 값을 참조하려함
+//2칸 줄이는거 1칸줄이는거 나눠야됨 안그러면 값 달라짐

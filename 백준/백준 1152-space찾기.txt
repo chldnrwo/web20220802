@@ -1,0 +1,53 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main3 {
+	 
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		//int N = in.nextInt();
+		String a = in.nextLine();
+		//next는 공백을 받지 못한다
+		//nextLine은 공백을 받는다
+		int cnt=0;
+		int charInt;
+		int charInt2;
+		char b;
+		String[] arr = new String[a.length()];
+		int[] arr2 = new int[a.length()];
+		for(int i=0;i<a.length();i++) {
+			charInt=a.charAt(i);   //int형으로
+			b = (char)charInt;		//char형으로
+			arr[i]=String.valueOf(b); //string형으로
+		}
+		for(int i=0;i<a.length();i++) {
+			charInt2=a.charAt(i);
+			arr2[i]=charInt2;
+		}
+		//문자열 받은 후 한 글자씩 쪼개서 배열에 저장
+		//여기까지 문제 없음
+		for(int i=0;i<a.length();i++) {
+			if(arr2[i]==32) {
+				cnt++;
+			}
+		}
+		if(arr2[0]==32) {
+			cnt--; //맨앞에 스페이스인 경우
+		}
+		if(arr2[a.length()-1]==32) {
+			cnt--; //맨뒤에 스페이스인 경우
+		}
+		//직접 비교하니까 안됨 아스키 코드로 변환할 필요 있음
+		System.out.println(cnt+1);
+		
+	}
+}
+
+//우선 공백을 체크
+//맨앞에 공백이 있으면 1 빼기
+//맨뒤에 공백이 있으면 1 빼기
+//공백 + 1 이 단어의 개수

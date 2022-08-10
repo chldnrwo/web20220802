@@ -1,0 +1,75 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main3 {
+	 
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		//int N = in.nextInt();
+		String a = in.next();
+		String[] arr=new String[a.length()];
+		char b;
+		int numCheck;
+		int num2;
+
+		
+		for(int i=0;i<a.length();i++) {
+			numCheck = a.charAt(i);
+			if(numCheck>91) {
+				numCheck = numCheck-32;
+			}
+			b = (char)numCheck;
+			arr[i]=String.valueOf(b);
+		}
+		//arr에 단어가 대문자로 변환되어 담긴다.
+		
+		int[] arr1 = new int[26];
+		for(int j=0;j<a.length();j++) {
+			num2 = arr[j].charAt(0);
+			num2 = num2-65;
+			//arr의 첫번째 문자를 읽어서 int자료형으로 저장함
+			//수식 넣기 가능
+			arr1[num2]++;			
+		}
+		//여기도 문제없음
+		int max = arr1[0];
+		int maxIndex = 0;
+		for(int k=0;k<26;k++) {
+			if(arr1[k] > max) {
+				max = arr1[k];
+				maxIndex = k;
+			}
+				//배열 내 최대값의 인덱스 탐색
+				//if괄호를 제대로 안침
+		}
+		int ascii;
+		char c;
+		ascii = maxIndex+65;
+		c = (char)ascii;
+		int cnt=0;
+		//인덱스값 아스키코드 변환
+		for(int k=0;k<26;k++) {
+			if(arr1[k] == max) {
+				cnt++;
+			}
+		}
+		if(cnt > 1) {
+			c = '?';
+		}//가장 큰 수가 여러개일 때 c값을 ?로 바꿈 
+		
+		System.out.println(c);
+				
+	}
+
+}
+
+//일단 배열 만들어서 하나씩넣음
+//1. 대소문자를 통일 시켜야됨 - 아스키 코드 변환 이용
+//2. 많이 사용된 알파벳을 찾아서 비교해야됨
+//3. 여러개인 경우 물음표 출력해야됨
+//최대값 찾고 그 값의 인덱스 찾으면 끝
+//지금 까지 배운걸 다 종합하는 듯한 문제

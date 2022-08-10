@@ -1,0 +1,39 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main3 {
+	 
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int M = in.nextInt();
+		int N = in.nextInt();
+		//String a = in.next();
+		int alM;
+		int alN;
+		int sangSu;
+		alM=d(M);
+		alN=d(N);
+		if(alM>alN) {
+			sangSu=alM;
+		}
+		else {
+			sangSu=alN;
+		}
+		System.out.println(sangSu);
+	}
+	
+	public static int d(int number){
+		int sum=0;
+		
+		sum=(number%10)*100+(number%100-number%10)+number/100;
+		
+		return sum;
+	}
+}
+
+//함수로 풀어보자
+//너무 쉬워서 함수까지 쓰는 여유
