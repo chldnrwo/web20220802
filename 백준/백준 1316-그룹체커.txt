@@ -1,0 +1,73 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main3 {
+	 
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int N = in.nextInt();
+		
+		//String[] arr = new String[N];
+		
+		String[] ex = new String[4];
+		int cnt=0;
+		for(int i=0;i<N;i++) {
+			String a = in.next();
+			c(d(a)); //d(a)는 현재 배열상태
+			if(c(d(a))) { //true면 실행 false면 지나감
+				cnt++;
+			}
+			
+		} // N번 만큼 입력 받기
+		System.out.println(cnt);
+	}
+	
+	public static String[] d(String str){ 
+		//int 받아서 배열값 반환도 되는듯 
+		int ascii;
+		char ch;
+		String []arr = new String[str.length()];
+		for(int i=0;i<str.length();i++) {
+			ascii = str.charAt(i);
+			ch = (char)ascii;
+			arr[i]=String.valueOf(ch);
+		}
+		//ch가 int형이었음; 자주하는 실수
+		//이제 함수는 문제없음
+		return arr;
+	}
+	
+	public static boolean c(String[] arr){ 
+		//배열 받아서 boolean 반환 
+		boolean check = true;
+		
+		for(int i=0;i<arr.length;i++) {
+			for(int j=i+1;j<arr.length;j++) {
+				//i보다 하나 위에 배열들만 체크
+				if(arr[i]==arr[i+1]) {
+					//i와 다음값이 같은 경우
+					//걍 가만히 냅두면 true
+				}
+				else if(!arr[i].equals(arr[i+1])) {
+					//i와 다음값이 다른경우
+					if(arr[i].equals(arr[j])) {
+						//i위에 배열중에 같은게 있는 경우
+						check=false;
+					}
+					else {
+						//걍 가만히 냅두면 true
+					}
+				}
+			}
+		}
+		return check;
+	}
+}
+
+//가끔 ==작동 안하면 equals()쓰는 느낌으로 가야것다
+//존나게 긴 작업이었다
+//안쪽 포문에 length-i해놨다가 한번 틀림
