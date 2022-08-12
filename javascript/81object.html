@@ -9,17 +9,26 @@
 <body>
 
     <script>
-        function myfunc1(){
-            while(true){
-                console.log("반복문 실행중...");
-
-                return;
-            }
-            console.log("loop 다음 실행문...");
+        let a ={
+            name: "donald",
+            score: [90, 91, 80, 89]
+            
         }
-        myfunc1();
+        let arr =[2,3,4];
+        console.log(arr[1]);
 
-        console.log("실행 흐름 이어짐..");
+        console.log(a.score[0]);
+        console.log(a.score[1]);
+        console.log(a.score[2]);
+        console.log(a.score[3]);
+        for(let i=0;i<4;i++){
+            console.log(a.score[i]);
+        }
+        for(let i=0;i<4;i++){
+            a.score[i] = i+5;
+        }
+        console.log(a.score);
+        
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>

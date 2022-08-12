@@ -9,17 +9,28 @@
 <body>
 
     <script>
-        function myfunc1(){
-            while(true){
-                console.log("반복문 실행중...");
-
-                return;
+        let a ={
+            name : "jhope",
+            age : 20,
+            sing: function(){
+                console.log("노래를 부른다.");
+            },
+            dance: function(){
+                console.log("춤을 춘다.");
+            },
+            drink: function(){
+                console.log("물을 마신다.");
             }
-            console.log("loop 다음 실행문...");
-        }
-        myfunc1();
 
-        console.log("실행 흐름 이어짐..");
+        };
+        myfunc1();
+        function myfunc1(){
+            console.log("마이펑크 함수 실행됨");
+        }
+        console.log(a.name);
+        a.sing();
+        a.dance();
+        a.drink();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>

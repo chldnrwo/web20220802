@@ -1,0 +1,44 @@
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+
+public class Main3 {
+ 
+	public static void main(String[] args) throws IOException {
+ 
+//		Scanner in = new Scanner(System.in);
+// 
+//		int up = in.nextInt();		// A
+//		int down = in.nextInt();	// B
+//		int length = in.nextInt(); 	// C
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		
+		int up = Integer.parseInt(st.nextToken());	
+		int down = Integer.parseInt(st.nextToken());	
+		int length = Integer.parseInt(st.nextToken());	
+		
+		
+		int day = (length - down) / (up - down);
+        
+		// 나머지가 있을 경우 (잔여 블럭이 있을 경우)
+		if ((length - down) % (up - down) != 0) {
+			day++;
+		}
+		System.out.println(day);
+	}
+}
+//조금만 점검하면 될것 같다
+//큰 수 입력 받으면 시간초과 나옴 수식으로 변경해야될듯
+//이거 150ms 내로 풀어야되는데 스캐너쓰면 100 그냥 넘겨서
+//최적화된 알고리듬이 필요함
+//경우를 두가지로 나눠서 품으로써 알고리즘 최적화 (-)(-)
+//해설 그대로 갖다 써도 시간초과남 무조건 bufferreader써야 풀림

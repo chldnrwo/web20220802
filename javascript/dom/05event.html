@@ -7,19 +7,41 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body>
-
+    <!-- h1#head$*5>lorem1 -->
+    <h1 id="head1">
+        Lorem.
+    </h1>
+    <h1 id="head2">
+        Delectus!
+    </h1>
+    <h1 id="head3">
+        Cum?
+    </h1>
+    <h1 id="head4">
+        Natus.
+    </h1>
+    <h1 id="head5">
+        Harum!
+    </h1>
     <script>
-        function myfunc1(){
-            while(true){
-                console.log("반복문 실행중...");
-
-                return;
-            }
-            console.log("loop 다음 실행문...");
+        function printHTML(){
+            console.log(this.innerHTML);
         }
-        myfunc1();
+        document.querySelector("#head1").addEventListener("click", printHTML);
+        document.querySelector("#head2").addEventListener("click", printHTML);
+        document.querySelector("head3");
+        head3.addEventListener("click", printHTML);
 
-        console.log("실행 흐름 이어짐..");
+        let head4 = document.querySelector("#head4");
+        head4.addEventListener("click", function(){
+            console.log("HEAD4 : "+this.innerHTML);
+        });
+
+        document.querySelector("#head5").addEventListener("click", function(){
+            console.log("HEAD5 : "+this.innerHTML);
+        });
+
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>

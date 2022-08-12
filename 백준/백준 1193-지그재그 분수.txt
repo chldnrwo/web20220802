@@ -1,0 +1,63 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main3 {
+	 
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int N = in.nextInt();
+		//String a = in.next();
+		//String[] arr = new String[a.length()];
+		
+		System.out.println(d(N)+"/"+c(N));
+	}
+	
+	public static int d(int i){ 
+		//시그마를 통해 입력받은 i의 위치를 수색하는 함수
+		int t = 1;
+		int index = 0; //그룹 내에서 몇번재 숫자인지
+		
+		for(int j=0;;j++) {
+			while(2*t*t-t>=i) {
+				//조건을 충족할 때 i는 t번 그룹
+				//i에 5가오는 경우 t=2
+				//i에 8이 오는 경우 t=3인 상태로 break;
+				index = i-(2*(t-1)*(t-1)-(t-1));
+				//i에 5가오는 경우 index=4
+				//i에 8이 오는 경우 index=2
+				if(index>2*(t-1)+1) { 
+					index = 2*(2*(t-1)+1)-index; 
+				}
+				return index;		
+			}
+			t++;
+		}
+	}
+	public static int c(int i){ 
+		//시그마를 통해 입력받은 i의 위치를 수색하는 함수
+		int t = 1;
+		int index = 0; //그룹 내에서 몇번재 숫자인지
+		
+		for(int j=0;;j++) {
+			while(2*t*t+t>=i) {
+				//조건을 충족할 때 i는 t번 그룹
+				
+				index = i-(2*(t-1)*(t-1)+(t-1));
+				
+				if(index>2*t) { 
+					index = 4*t - index; 
+				}
+				return index;		
+			}
+			t++;
+		}
+	}
+}
+// = 하나 안붙임
+// 왜 1일 때 분자가 0이 나오는지 탐색
+// 아예 함수를 안들어갔네
+// 분자 찾는 함수 분모 찾는 함수 만들어서 제출
