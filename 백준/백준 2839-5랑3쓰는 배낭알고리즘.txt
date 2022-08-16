@@ -1,0 +1,42 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main3 {
+	 
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int N = in.nextInt();
+		//String a = in.next();
+		//String[] arr = new String[a.length()];
+		System.out.println(d(N));
+		
+	}
+	
+	public static int d(int a){ 
+		int cnt3=0;
+		int cnt=0;
+		if(a==1||a==2||a==4||a==7) {
+			return -1;
+		}
+		for(int i = 0;;i++) {
+			while(a%5==0) {
+				
+				cnt = a/5+cnt3;
+				
+				return cnt;
+			}
+			a-=3;
+			cnt3++;
+		}
+		
+		
+	}
+	
+	
+}
+// 간신히 시간초과 안냄
+// 1 2 4 7 이 이레귤러라 따로 빼놓고 편하자고 작성한 코드
