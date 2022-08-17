@@ -1,0 +1,42 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int N = in.nextInt();
+		//String a = in.next();
+		//String[] arr = new String[a.length()];
+		int i=2;
+		int M = N;
+		if(N==1) {
+			
+		}
+		while(i<=M) {
+			if(N%i==0) {
+				System.out.println(i);
+				N=N/i;	
+			}
+			else {
+				i++;
+			}	
+		}
+	}
+		
+	
+	
+	public static int d(int a){ 
+		
+		return 0;
+	}
+	
+	
+}
+
+//함수는 쓰지 않는다 포문을 while로 해석
+//무한루프가 어디서 생긴걸까
