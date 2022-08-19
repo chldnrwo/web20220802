@@ -1,0 +1,45 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int M = in.nextInt();
+		int N = in.nextInt();
+		//String a = in.next();
+		//String[] arr = new String[a.length()];
+		
+		for(int i=M;i<=N;i++) {
+			if(d(i)!=0) {
+				System.out.println(d(i));
+			}
+		}
+				
+	}
+	
+	public static int d(int A){
+		//에라스토테네스의 체로 개선한 소수판별기
+		double a = Math.sqrt(A);
+		if(A==1) {
+			return 0;
+		}
+			for(int j=2;j<=a;j++) {
+				if(A%j==0) {
+					return 0;
+				}	
+			}
+			return A;
+	}
+}
+
+//이번에도 함수 안씀
+//전에 만든 함수 응용
+//시간 제한이 좀 있는 편 수식을 쓰거나 버퍼리더를 써야된다
+//에라토스테네스의 체 문제 2,3,5,7의 배수 제거  
+//시간초과는 안나는데 틀렸다고 한다.
+//1을 예외처리 안했었음
