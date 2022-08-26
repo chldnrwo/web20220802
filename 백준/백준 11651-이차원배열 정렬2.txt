@@ -1,0 +1,54 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		int N = in.nextInt();
+		int[][] arr = new int[N][2];
+		
+		for(int i=0;i<N;i++) {
+			arr[i][0]=in.nextInt();
+			arr[i][1]=in.nextInt();
+		}
+		Arrays.sort(arr, (e1, e2)->{
+			if(e1[1]==e2[1]) {
+				return e1[0] - e2[0];
+			}else {
+				return e1[1] - e2[1];
+			}
+		});
+	
+		for(int i=0;i<N;i++) {
+			sb.append(arr[i][0]+" "+arr[i][1]+"\n");
+		}
+		//String str = sb.toString();
+		System.out.println(sb);
+		
+	}
+	
+	public static int d(int str){ 
+		int sum=0;
+		
+		return 0;
+	}
+	
+	
+}
+
+//앞에 문제응용
+//날먹문제 개꿀띠

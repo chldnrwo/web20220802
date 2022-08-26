@@ -1,0 +1,98 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		
+		int[] arr=new int[N];
+		for(int i=0;i<N;i++) {
+			arr[i]=Integer.parseInt(br.readLine());
+		}
+		
+		System.out.println(avg(arr));
+		System.out.println(mid(arr));
+		System.out.println(cnt(arr));
+		System.out.println(range(arr));
+	}
+	
+	public static int avg(int[] arr){ 
+		int sum=0;
+		int avg=0;
+		for(int i=0;i<arr.length;i++) {
+			sum+=arr[i];
+		}
+		avg=(int) Math.round((double)sum/arr.length);
+		return avg;
+	}
+	public static int mid(int[] arr) {
+		Arrays.sort(arr);
+		
+		return arr[arr.length/2];
+	}
+	public static int cnt(int[] arr) {
+		
+		int[] arrCnt = new int[8001]; 
+		int[] maxInd = new int[8001];
+		int[] maxInd2 = new int[8001];
+		for(int i=0;i<arr.length;i++) {
+			arrCnt[arr[i]+4000]++;
+		}
+		Arrays.fill(maxInd, -4000);
+		int max=0;
+		int cnt=0;
+		int maxIndex=0;
+		for(int i =0;i<arrCnt.length;i++) {
+			if(max<arrCnt[i]) {
+				max=arrCnt[i];
+			}
+		}
+		
+		for(int i =0;i<arrCnt.length;i++) {
+			if(max==arrCnt[i]) {
+				cnt++;
+				maxIndex=i;
+				maxInd[i] = i; //인덱스값이라 바꾸면안됨
+			}
+		}
+		Arrays.sort(maxInd);
+		int k=0;
+		for(int i=0;i<maxInd.length;i++) {
+			if(maxInd[i]>-4000) {
+				maxInd2[k]=maxInd[i];
+				k++;
+			}
+		}
+		
+		if(cnt==1) {
+			
+			return maxIndex-4000;
+		}
+		return maxInd2[1]-4000; 
+		
+	}
+	public static int range(int[] arr){
+		int max;
+		int min;
+		Arrays.sort(arr);
+		max=arr[arr.length-1];
+		min=arr[0];
+		
+		return max-min;
+	}
+}
+
+// 최빈값이 2개 2개인경우
+//최빈값이 골치덩어리였다

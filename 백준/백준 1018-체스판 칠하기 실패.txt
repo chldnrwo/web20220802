@@ -1,0 +1,225 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+		static StringBuilder sb=new StringBuilder();
+		static Scanner in = new Scanner(System.in);
+		
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		
+		//Scanner in = new Scanner(System.in);
+		int N = in.nextInt(); 
+		int M = in.nextInt();
+		
+		char[][] arrBig = new char[N][M];
+		
+		for(int i=0;i<N;i++) {
+			String A = in.next();
+			for(int j=0;j<M;j++) {
+				arrBig[i][j] = A.charAt(j);
+			}
+		}	
+		
+		char[][] arr = new char[8][8];
+		int[][] arrZ = new int[N-7][M-7];
+		
+		for(int a=0;a<N-7;a++) {
+			for(int b=0;b<M-7;b++){
+				for(int i=0;i<8;i++) {
+					for(int j=0;j<8;j++) {
+						arr[i][j]=arrBig[i+a][j+b];
+					}
+				}
+				arrZ[a][b]=find(arr);		
+			}
+		}
+		
+		int minZ=arrZ[0][0];
+		for(int i=0;i<N-7;i++) {
+			for(int j=0;j<M-7;j++) {
+				if(arrZ[i][j]<minZ) {
+					minZ=arrZ[i][j];
+				}
+			}
+		}
+		System.out.println(minZ);
+	}
+	
+	public static int find(char arr[][]){
+		char arr2[][] = new char[8][8];
+		
+		for(int i=0;i<8;i++) {
+			for(int j=0;j<8;j++) {
+				arr2[i][j]=arr[i][j];
+			}
+		}
+		arr2[1][1]='W';
+		
+		int cnt=0;
+		int cnt2=1;
+		for(int i=1;i<7;i++) {
+			for(int j=1;j<7;j++) {
+				if(arr[i][j]=='B') {
+					if(arr[i][j]==arr[i+1][j]) {
+						arr[i+1][j]='W';
+						cnt++;
+					}
+					if(arr[i][j]==arr[i][j+1]) {
+						arr[i][j+1]='W';
+						cnt++;
+					}
+					if(arr[i-1][j]==arr[i][j]) {
+						arr[i-1][j]='W';
+						cnt++;
+					}
+					if(arr[i][j-1]==arr[i][j]) {
+						arr[i][j-1]='W';
+						cnt++;
+					}
+					if(arr[i][j]!=arr[i-1][j-1]) {
+						arr[i-1][j-1]='B';
+						cnt++;
+					}
+					if(arr[i][j]!=arr[i+1][j-1]) {
+						arr[i+1][j-1]='B';
+						cnt++;
+					}
+					if(arr[i][j]!=arr[i-1][j+1]) {
+						arr[i-1][j+1]='B';
+						cnt++;
+					}
+					if(arr[i][j]!=arr[i+1][j+1]) {
+						arr[i+1][j+1]='B';
+						cnt++;
+					}
+				}
+				else {
+					if(arr[i][j]==arr[i+1][j]) {
+						arr[i+1][j]='B';
+						cnt++;
+					}
+					if(arr[i][j]==arr[i][j+1]) {
+						arr[i][j+1]='B';
+						cnt++;
+					}
+					if(arr[i-1][j]==arr[i][j]) {
+						arr[i-1][j]='B';
+						cnt++;
+					}
+					if(arr[i][j-1]==arr[i][j]) {
+						arr[i][j-1]='B';
+						cnt++;
+					}
+					if(arr[i][j]!=arr[i-1][j-1]) {
+						arr[i-1][j-1]='W';
+						cnt++;
+					}
+					if(arr[i][j]!=arr[i+1][j-1]) {
+						arr[i+1][j-1]='W';
+						cnt++;
+					}
+					if(arr[i][j]!=arr[i-1][j+1]) {
+						arr[i-1][j+1]='W';
+						cnt++;
+					}
+					if(arr[i][j]!=arr[i+1][j+1]) {
+						arr[i+1][j+1]='W';
+						cnt++;
+					}
+				}	
+			}
+		}
+		for(int i=1;i<7;i++) {
+			for(int j=1;j<7;j++) {
+				if(arr2[i][j]=='B') {
+					if(arr2[i][j]==arr2[i+1][j]) {
+						arr2[i+1][j]='W';
+						cnt2++;
+					}
+					if(arr2[i][j]==arr2[i][j+1]) {
+						arr2[i][j+1]='W';
+						cnt2++;
+					}
+					if(arr2[i-1][j]==arr2[i][j]) {
+						arr2[i-1][j]='W';
+						cnt2++;
+					}
+					if(arr2[i][j-1]==arr2[i][j]) {
+						arr2[i][j-1]='W';
+						cnt2++;
+					}
+					if(arr2[i][j]!=arr2[i-1][j-1]) {
+						arr2[i-1][j-1]='B';
+						cnt2++;
+					}
+					if(arr2[i][j]!=arr2[i+1][j-1]) {
+						arr2[i+1][j-1]='B';
+						cnt2++;
+					}
+					if(arr2[i][j]!=arr2[i-1][j+1]) {
+						arr2[i-1][j+1]='B';
+						cnt2++;
+					}
+					if(arr2[i][j]!=arr2[i+1][j+1]) {
+						arr2[i+1][j+1]='B';
+						cnt2++;
+					}
+				}
+				else {
+					if(arr2[i][j]==arr2[i+1][j]) {
+						arr2[i+1][j]='B';
+						cnt2++;
+					}
+					if(arr2[i][j]==arr2[i][j+1]) {
+						arr2[i][j+1]='B';
+						cnt2++;
+					}
+					if(arr2[i-1][j]==arr2[i][j]) {
+						arr2[i-1][j]='B';
+						cnt2++;
+					}
+					if(arr2[i][j-1]==arr2[i][j]) {
+						arr2[i][j-1]='B';
+						cnt2++;
+					}
+					if(arr2[i][j]!=arr2[i-1][j-1]) {
+						arr2[i-1][j-1]='W';
+						cnt2++;
+					}
+					if(arr2[i][j]!=arr2[i+1][j-1]) {
+						arr2[i+1][j-1]='W';
+						cnt2++;
+					}
+					if(arr2[i][j]!=arr2[i-1][j+1]) {
+						arr2[i-1][j+1]='W';
+						cnt2++;
+					}
+					if(arr2[i][j]!=arr2[i+1][j+1]) {
+						arr2[i+1][j+1]='W';
+						cnt2++;
+					}
+				}	
+			}
+		}
+		
+		int minCnt=cnt;
+		if(minCnt>cnt) {
+			minCnt=cnt;
+		}if(minCnt>cnt2) {
+			minCnt=cnt2;
+		}
+		return minCnt;
+
+	}
+}
+
+//너무 무식하게 커져서 함수 모듈화를 못하겟다
+//알고리즘 진짜 개같이 짰다
+//예제 나온거 다통과했는데 틀렸다고 뜸

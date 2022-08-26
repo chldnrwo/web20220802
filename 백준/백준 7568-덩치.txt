@@ -1,0 +1,57 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+		static StringBuilder sb=new StringBuilder();
+		static Scanner in = new Scanner(System.in);
+		
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		
+		//Scanner in = new Scanner(System.in);
+		int N = in.nextInt(); 
+		//int M = in.nextInt();
+		d(N);
+	}
+	
+	public static void d(int n){
+		int[] arrW = new int[n];
+		int[] arrH = new int[n];
+		int[] arrRank = new int[n];
+		
+		for(int i=0;i<n;i++) {
+			arrW[i] = in.nextInt(); 
+			arrH[i] = in.nextInt();
+			arrRank[i] = 1;
+		}//입력값 전부 배열에 들어감
+		
+		for(int k=0;k<n;k++) {
+			for(int j=0;j<n;j++) {
+				//if(k==j)continue;
+				if((arrW[k]<arrW[j])&&(arrH[k]<arrH[j])) {
+					arrRank[k]++;
+				}
+				
+			}
+		}
+		
+		
+		for(int i=0;i<n;i++) {
+			System.out.print(arrRank[i]+" ");
+		}
+		
+		
+	}
+}
+
+//일단 키가 같고 몸무게가 우위거나 몸무게가 같고 키가 우위인 경우는 배제
+//n이 들어갈 자리를 상수로 둠
+//같은 몸무게 키 배제도 아님
+//공백무자 때문에 그런가 
+//같은 배열 i=j 비교할때 continue처리 안해주면 문제 생기나봄, 아니네 몬가 문제가 잇엇나봄
