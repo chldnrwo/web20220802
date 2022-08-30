@@ -1,0 +1,80 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 static class Person implements Comparable<Person>{
+		 String name;
+		 int age;
+		 public Person(int age, String name) {
+			 this.name=name;
+			 this.age=age;
+		 }
+		 @Override
+		 public int compareTo(Person p) {
+			 if(this.age>p.age) {
+				 return 1;
+			 }else if(this.age<p.age) {
+				 return -1;
+			 }else {
+				 return 0;
+			 }
+		 }
+		 @Override
+		 public String toString() {
+			 return age+" "+name;
+		 }
+		 
+	 }
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		int N = in.nextInt();
+		//int[] arr1 = new int[N];
+		//String[] arr2 = new String[N];
+		
+		List<Person> list = new ArrayList<>();
+		
+		for(int i=0;i<N;i++) {
+			int a = in.nextInt();
+			String b = in.next();
+			list.add(new Person(a, b));
+		}
+		
+		Collections.sort(list);
+		for(int i=0;i<N;i++) {
+			sb.append(list.get(i)+"\n");
+		}
+		String str = sb.toString();
+		
+		System.out.println(str);
+	}
+	
+	public static int d(int str){ 
+		int sum=0;
+		
+		return 0;
+	}
+	
+	
+}
+
+//람다식 쓰지말고 그냥 스테이블 소트 쓰자 버블, 삽입, 병합중에 하나
+//버블해보고 안되면 병합
+//초과만 뜨지마라
+//어레이 소트는 퀵소트
+//컬렉션 소트는 삽입, 합병소트니까 컬렉션으로 간다.
+//collection에 s안붙임
+//앞에 컬렉션소트 문제가 도움이 많이 되었다
