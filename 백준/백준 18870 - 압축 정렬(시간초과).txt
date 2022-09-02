@@ -1,0 +1,72 @@
+import java.util.Scanner;
+import java.util.Set;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		int N = in.nextInt();
+		//int[] arr = new int[N];
+		Integer[] arr = new Integer[N];
+		for(int i=0;i<N;i++) {
+			arr[i]=in.nextInt();
+		}
+		
+		Integer[] arrSet = arr.clone();
+		Integer[] arrSort = arr.clone();
+		Integer[] arrResult = new Integer[N];
+		
+		Set<Integer> set = new HashSet<Integer>(Arrays.asList(arrSet));
+		
+		arrSet = set.toArray(new Integer[0]);
+		//hashset은 음수좆까고 절대값 순서로 정렬한다.
+		int len = arrSet.length;
+		
+		Arrays.sort(arrSet);
+		
+		for(int i=0;i<arrSet.length;i++) {
+			for(int j=0;j<arr.length;j++) {
+				if(arrSet[i].equals(arr[j])) {
+					arrResult[j]=i;
+				}
+			}
+		}
+		
+		
+		for(int i=0;i<arrResult.length;i++) {
+			sb.append(arrResult[i]+" ");
+		}
+		String str = sb.toString();
+		System.out.println(str);
+		
+	}
+	
+	public static int d(int str){ 
+		int sum=0;
+		
+		return 0;
+	}
+	
+	
+}
+
+//컬렉션 배열
+//쓰다보면 
+//int와같은 원시 자료형을
+//Integer같은 wrapper클래스로
+//바꿔줘야 동작할때가 있다.
+//==을 equal

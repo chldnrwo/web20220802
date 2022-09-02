@@ -1,0 +1,85 @@
+import java.util.Scanner;
+import java.util.Set;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		int N = in.nextInt();
+		//int[] arr = new int[N];
+		
+		int[] arr = new int[N];
+		for(int i=0;i<N;i++) {
+			arr[i]=in.nextInt();
+		}
+		int[] arrSort = arr.clone();
+		
+		HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
+		
+		Arrays.sort(arrSort); 
+		//원본 배열과, 정렬된 배열, 랭크를 매길 해쉬맵을 준비
+		//ex) 
+		//원본 배열 {2, 4, -10, 4, -9}
+		//정렬 배열 {-10, -9, 2, 4, 4}
+		//해쉬맵은 아직 key{null...} value{null...}
+		
+		int rank = 0;
+		for(int i : arrSort) {					//향상된 포문으로 arrSort배열을 훝을 것이다
+			if(!hashMap.containsKey(i)) {		//만약 해쉬맵의 i번째 key테이블이 받은 인자가 없다면
+				hashMap.put(i, rank);			//i번째 key를 가진 value테이블에  현재 rank 값을 넣는다
+				rank++;							//rank++;
+			}
+		}
+		//hashmap key{0,1,2,3} value{-10,-9,2,4}
+		
+		
+		for(int i : arr) {						//향상된 포문으로 arr배열을 훝을 것이다.
+			int ranking = hashMap.get(i);		//변수 ranking 선언 get함수로 hashMap의 i번째 key를 가져와서 변수에 대입 
+			sb.append(ranking+" ");				//스트링빌더에 변수 ranking 저장
+		}
+		//arr = {2, 4, -10, 4, -9}
+		//2 3 0 3 1
+		
+		String str = sb.toString();
+		System.out.println(str);
+		
+		
+	}
+	
+	public static int d(int str){ 
+		int sum=0;
+		
+		return 0;
+	}
+	
+	
+}
+
+//컬렉션 배열
+//쓰다보면 
+//int와같은 원시 자료형을
+//Integer같은 wrapper클래스로
+//바꿔줘야 동작할때가 있다.
+//==을 equal
+//시간초과
+//hashset과 hashmap을 배울수 있는 좋은 기회였다
+//향상된 for문은 익숙하지가 않다\
+//공부해본 결과 대체적으로 hashing을 사용하는 컬렉션들이 성능이 좋다고 한다.
+//Map은 key 테이블과 value 테이블로 구성되어 있다
+//중복 배열 제거 때문에 대부분의 풀이가 map 또는 hashmap을 쓰는편
+//map을 모른다면 시간제한도 빡빡해서 굉장히 풀기어렵다

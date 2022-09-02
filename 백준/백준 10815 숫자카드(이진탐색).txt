@@ -1,0 +1,63 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		int N = in.nextInt();
+		int[] arrN = new int[N];
+		for(int i=0;i<N;i++) {
+			arrN[i]=in.nextInt();
+		}
+		int M = in.nextInt();
+		int[] arrM = new int[M];
+		for(int i=0;i<M;i++) {
+			arrM[i]=in.nextInt();
+		}
+		Arrays.sort(arrN);
+		
+		for(int i=0;i<M;i++) {
+			sb.append(binarySearch(arrM[i], 0, arrN.length-1,arrN)+" ");
+		}
+		String str = sb.toString();
+		System.out.println(str);
+		
+	}
+	
+	public static int binarySearch(int key, int low, int high, int[] arr){
+			int mid;
+			
+			while(low <= high) {
+				mid = (low + high) / 2;
+				
+				if(key == arr[mid]) {
+					return 1;
+				} else if(key < arr[mid]) {
+					high = mid - 1;
+				} else {
+					low = mid + 1;
+				}
+			}
+			
+			return 0; // 탐색 실패 
+	}
+	
+	
+}
+
+//시간초과 진짜 요새 편하게 가는게 하나도 없다. 
+//대충 이진탐색 알고리즘 함수 구현
