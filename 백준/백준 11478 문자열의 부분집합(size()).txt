@@ -1,0 +1,50 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		String a = in.next();
+		int n = a.length();
+		
+		String[] arr = new String[n*(n+1)/2];
+		
+		HashMap<String, Integer> hashmap = new HashMap<String, Integer>();
+		
+		for(int i=0;i<n;i++) {
+			for(int j=n;j>0+i;j--) {
+			hashmap.put(a.substring(i, j), 1);
+			}
+		}
+		
+		
+		System.out.println(hashmap.size());
+		
+	}
+	
+	public static int d(int str){ 
+		int sum=0;
+		
+		return 0;
+	}
+	
+	
+}
+
+//해쉬맵에 넣기전에 로그찍기
+//해쉬맵 size 함수 못찾아서 뻘짓함

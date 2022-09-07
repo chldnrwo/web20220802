@@ -1,0 +1,57 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		double x = in.nextInt();
+		double y = in.nextInt();
+		double X = in.nextInt();
+		double Y = in.nextInt();
+		double minX;
+		double minY;
+		
+		if(X/2 > x) {
+			minX = x;
+		}
+		else {
+			minX = X-x;
+		}
+		if(Y/2 > y) {
+			minY = y;
+		}
+		else {
+			minY = Y-y;
+		}
+		
+		if(minX<minY) {
+			System.out.println((int)minX);
+		}
+		else {
+			System.out.println((int)minY);
+		}
+	
+	
+	
+	}
+}
+	
+	
+
+//여기부턴 기하
+//너무쉬운문제

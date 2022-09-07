@@ -1,0 +1,41 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		int a1 = in.nextInt();
+		int b1 = in.nextInt();
+		int a2 = in.nextInt();
+		int b2 = in.nextInt();
+		int a3 = in.nextInt();
+		int b3 = in.nextInt();
+		
+		int x = (a1==a2)?a3:(a2==a3)?a1:a2;  //a1이 이레귤러인 경우 문제가 해결이 안됨
+		int y = (b1==b2)?b3:(b2==b3)?b1:b2;
+		
+		
+		
+		
+		System.out.println(x+" "+y);
+	}
+}
+	
+	
+
+//삼항연산자 쓰면 간결한 문제

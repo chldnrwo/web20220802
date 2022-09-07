@@ -1,0 +1,68 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		int N = in.nextInt();
+		int M = in.nextInt();
+		
+		HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
+		HashMap<Integer, String> map = new HashMap<Integer, String>();
+		for(int i=0;i<N;i++) {
+			String a = in.next();
+			hashMap.put(a, 0);
+		}
+		
+		
+		int cnt=0;
+		for(int i=0;i<M;i++) {
+			String b =in.next();
+			if(hashMap.containsKey(b)) {
+				cnt++;
+				map.put(cnt-1, b);
+			}
+		}
+		String[] arr = new String[cnt];
+		for(int i=0;i<cnt;i++) {
+			arr[i]=map.get(i);
+		}
+		
+		Arrays.sort(arr);
+		
+		for(int i=0;i<cnt;i++) {
+			sb.append(arr[i]+"\n");
+		}
+		System.out.println(cnt);
+		String str = sb.toString();
+		System.out.println(str);
+		
+	}
+	
+	public static int d(int str){ 
+		int sum=0;
+		
+		return 0;
+	}
+	
+	
+}
+
+//일단 배열의 길이 모르고 당장 넣어야 할때는 map이 좋은듯하다
+//null과 배상욱만 나옴 오헨리가 안들어가진것 같다
+//어레이소트가 문자정렬까진 자동으로 해준다
