@@ -18,7 +18,13 @@ public class Main {
 		StringBuilder sb = new StringBuilder();
 		//String str = sb.toString();
 		//String[] arr = new String[a.length()];
-		int N = in.nextInt();
+		double N = in.nextInt();
+		double uclid = Math.PI*N*N;
+		double taxi = N*N*2;
+		
+		System.out.format("%.6f%n",uclid);
+		System.out.format("%.6f%n",taxi);
+		
 		
 	}
 	
@@ -31,4 +37,6 @@ public class Main {
 	
 }
 
-//
+//쉬운문제
+//택시 기하학에서 원의 개념이
+//생소했다

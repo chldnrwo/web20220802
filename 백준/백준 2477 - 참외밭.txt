@@ -1,0 +1,128 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		
+		int N = in.nextInt();
+		int[] arr = new int[] {0,0}; 
+		int a = in.nextInt();
+		int A = in.nextInt();
+		int b = in.nextInt();
+		int B = in.nextInt();
+		int c = in.nextInt();
+		int C = in.nextInt();
+		int d = in.nextInt();
+		int D = in.nextInt();
+		int e = in.nextInt();
+		int E = in.nextInt();
+		int f = in.nextInt();
+		int F = in.nextInt();
+		
+		int[] pnt1 = d(a, A, arr).clone();
+		int[] pnt2 = d(b, B, arr).clone();
+		int[] pnt3 = d(c, C, arr).clone();
+		int[] pnt4 = d(d, D, arr).clone();
+		int[] pnt5 = d(e, E, arr).clone();
+		int[] pnt6 = d(f, F, arr).clone();
+		
+		HashSet<Integer> hashset1 = new HashSet<Integer>();
+		HashSet<Integer> hashset2 = new HashSet<Integer>();
+		hashset1.add(pnt1[0]);
+		hashset1.add(pnt2[0]);
+		hashset1.add(pnt3[0]);
+		hashset1.add(pnt4[0]);
+		hashset1.add(pnt5[0]);
+		hashset1.add(pnt6[0]);
+		hashset2.add(pnt1[1]);
+		hashset2.add(pnt2[1]);
+		hashset2.add(pnt3[1]);
+		hashset2.add(pnt4[1]);
+		hashset2.add(pnt5[1]);
+		hashset2.add(pnt6[1]);
+		
+		ArrayList<Integer> arrX = new ArrayList<>(hashset1);
+		ArrayList<Integer> arrY = new ArrayList<>(hashset2);
+		ArrayList<Integer> ESSN = new ArrayList<>();
+		ESSN.add(a);
+		ESSN.add(b);
+		ESSN.add(c);
+		ESSN.add(d);
+		ESSN.add(e);
+		ESSN.add(f);
+		Collections.sort(arrX);
+		Collections.sort(arrY);
+		
+		if(Collections.frequency(ESSN, 4)==2&&Collections.frequency(ESSN, 2)==2) {
+			int sizeMax = (arrX.get(2) - arrX.get(0))*(arrY.get(2)-arrY.get(0));
+			int sizeMin = (arrX.get(2) - arrX.get(1))*(arrY.get(2)-arrY.get(1));
+			
+			int size = N*(sizeMax - sizeMin);
+			System.out.println(size);
+		}
+		else if(Collections.frequency(ESSN, 3)==2&&Collections.frequency(ESSN, 2)==2) {
+			int sizeMax = (arrX.get(2) - arrX.get(0))*(arrY.get(2)-arrY.get(0));
+			int sizeMin = (arrX.get(1) - arrX.get(0))*(arrY.get(2)-arrY.get(1));
+			
+			int size = N*(sizeMax - sizeMin);
+			System.out.println(size);
+		}
+		else if(Collections.frequency(ESSN, 3)==2&&Collections.frequency(ESSN, 1)==2) {
+			int sizeMax = (arrX.get(2) - arrX.get(0))*(arrY.get(2)-arrY.get(0));
+			int sizeMin = (arrX.get(1) - arrX.get(0))*(arrY.get(1)-arrY.get(0));
+			
+			int size = N*(sizeMax - sizeMin);
+			System.out.println(size);
+		}
+		else if(Collections.frequency(ESSN, 4)==2&&Collections.frequency(ESSN, 1)==2) {
+			int sizeMax = (arrX.get(2) - arrX.get(0))*(arrY.get(2)-arrY.get(0));
+			int sizeMin = (arrX.get(2) - arrX.get(1))*(arrY.get(1)-arrY.get(0));
+			
+			int size = N*(sizeMax - sizeMin);
+			System.out.println(size);
+		}
+		
+	}
+	
+	public static int[] d(int a, int b, int[] arr) {
+		if(a==1) {
+			arr[0]+=b;
+			return arr;
+		}
+		else if(a==2){
+			arr[0] -= b;
+			return arr;
+		}
+		else if(a==3){
+			arr[1] -= b;
+			return arr;
+		}
+		else if(a==4){
+			arr[1] += b;
+			return arr;
+		}
+		return arr;
+	}
+}
+	
+	
+
+//자바는 다중리턴 지원하지 않음
+//14에서 틀림
+//쌉노가다로품
