@@ -1,0 +1,63 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 public static final int div = 10007;
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		int N = in.nextInt();
+		int M = in.nextInt();
+		
+		System.out.println(fac(N)%div * mod_rev( (fac(M) * fac(N-M))%div, div-2)%div);
+	}
+	
+	public static int d(int a, int b){
+		return (fac(a) / (fac(b) * fac(a-b)));
+		
+	}
+	
+	public static int fac(int N){
+		if (N <= 1) {
+			return 1;
+		}
+		return (N * fac(N - 1)) % div;
+	}
+	
+	public static int mod_rev(int a, int p) {
+		int ret = 1;
+		while(p > 0) {
+			if(p % 2 == 1) {
+				ret *= a;
+				p--;
+				ret %= div;
+			}
+			a *= a;
+			a %= div;
+			p >>>= 1;	
+		}
+		return ret;
+	}
+
+	
+}
+
+//이렇게 순순히?
+//분모를 분자가 아닌 정수의 형태로 써야 연산이 된다
+//역원 숙지
+//페르마의 소정리
+//모듈러 연산은 나누기에서 못쓴다
+//역원을 구해서 곱하기 상태로 만들어야됨
+//시발 잘 모르겟다

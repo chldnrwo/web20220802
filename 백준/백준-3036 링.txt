@@ -1,0 +1,55 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		int N = in.nextInt();
+		int[] arr = new int[N];
+		for(int i=0;i<N;i++) {
+			arr[i]=in.nextInt();
+		}
+		for(int i=1;i<arr.length;i++) {
+			int a = gcd(arr[0], arr[i]);
+			System.out.println(arr[0]/a+"/"+arr[i]/a);
+		}
+		
+	}
+	
+	public static void d(int[] arr){
+	
+		
+	}
+	
+	public static int gcd(int a, int b){
+		
+		while(a!=0) {
+			int r = b%a;
+			b=a;
+			a=r;
+		}
+		return b;
+	}
+	
+	public static int lcm(int a, int b){
+		
+		return a*b/gcd(a,b);
+	}
+	
+}
+
+//이전문제에서 만들어둔 함수 활용

@@ -1,0 +1,73 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		int N = in.nextInt();
+		int[] arr = new int[N];
+		for(int i=0;i<N;i++) {
+			arr[i]=in.nextInt();
+		}
+		Arrays.sort(arr);
+		d(arr);
+		
+	}
+	
+	public static void d(int[] arr){
+		int[] arrZ = new int[arr.length-1];
+		for(int i=0;i<arrZ.length;i++) {
+			arrZ[i]=arr[i+1]-arr[i];
+		}
+		Arrays.sort(arrZ);
+		int ruler = arrZ[0];
+		
+		for(int i=1;i<arrZ.length;i++) {
+			ruler = gcd(ruler,arrZ[i]);
+		}
+		
+		for(int i=2;i<=ruler;i++) {
+			if(ruler%i==0) {
+				System.out.print(i+" ");
+			}
+		}
+		
+	}
+	
+	public static int gcd(int a, int b){
+		
+		while(a!=0) {
+			int r = b%a;
+			b=a;
+			a=r;
+		}
+		return b;
+	}
+	
+	public static int lcm(int a, int b){
+		
+		return a*b/gcd(a,b);
+	}
+	
+}
+
+//7퍼에서 틀림
+//곻백이랑은 상관없었음
+//차이값들의 최소공배수의 1을 제외한 최대공약수74
+//룰러가 잘못됨
+//최소공배수랑 최대공약수 헷갈려서 삽질함 최소공배수 함수는 결국 함씀
+//유클리드 호제법 참고

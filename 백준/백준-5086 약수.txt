@@ -1,0 +1,56 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		//int N = in.nextInt();
+		
+		int a = 1;
+		int b = 1;
+		
+		while(true) {
+			a = in.nextInt();
+			b = in.nextInt();
+			
+			if(a==0&&b==0) {
+				break;
+			}
+			
+			if(b%a==0) {
+				System.out.println("factor");
+			}
+			else if(a%b==0) {
+				System.out.println("multiple");
+			}
+			else {
+				System.out.println("neither");
+			}
+		}
+		
+	}
+	
+	public static int d(int str){ 
+		int sum=0;
+		
+		return 0;
+	}
+	
+	
+}
+
+//

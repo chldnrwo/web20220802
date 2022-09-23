@@ -1,0 +1,64 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		int N = in.nextInt();
+		
+		for(int i=0;i<N;i++) {
+			int stX = in.nextInt();
+			int stY = in.nextInt();
+			int dpX = in.nextInt();
+			int dpY = in.nextInt();
+			
+			int M = in.nextInt();
+			int[][] arr = new int[M][3];
+			for(int j=0;j<M;j++) {
+				arr[j][0] = in.nextInt();
+				arr[j][1] = in.nextInt();
+				arr[j][2] = in.nextInt();
+			}
+			int cnt = 0;
+			for(int j=0;j<M;j++) {
+				if(Math.pow(stX -arr[j][0],2)+Math.pow(stY -arr[j][1],2) < Math.pow(arr[j][2],2)) {
+					cnt++;
+				}
+				if(Math.pow(dpX -arr[j][0],2)+Math.pow(dpY -arr[j][1],2) < Math.pow(arr[j][2],2)) {
+					cnt++;
+				}
+				if(Math.pow(stX -arr[j][0],2)+Math.pow(stY -arr[j][1],2) < Math.pow(arr[j][2],2)
+						&&Math.pow(dpX -arr[j][0],2)+Math.pow(dpY -arr[j][1],2) < Math.pow(arr[j][2],2)) {
+					cnt = cnt - 2;
+				}
+			}
+			System.out.println(cnt);
+			
+		}
+	}
+	
+	public static int d(int str){ 
+		int sum=0;
+		
+		return 0;
+	}
+	
+	
+}
+
+//앞의 문제 응용하면 쉬운 부분
+//시작점이나 목적점이 원안에 갖혀있어서 무조건 거쳐야하는 원만 생각

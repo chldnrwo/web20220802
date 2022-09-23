@@ -1,0 +1,55 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+		static int[][] dp = new int[30][30];
+	
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		
+		
+		
+		int N = in.nextInt();
+		for(int i=0;i<N;i++){
+			int r = in.nextInt();
+			int n = in.nextInt();
+			sb.append(combi(n,r)+"\n");
+		}
+		System.out.println(sb);
+		
+	}
+	
+	
+	public static int combi(int n,int r){
+		// 이미 풀린 경우 바로 반환
+				if(dp[n][r] > 0) {
+					return dp[n][r]; 
+				}
+				
+				// 2번 성질
+				if(n == r || r == 0) {
+					return dp[n][r] = 1;
+				}
+				
+				// 1번 성질
+				return dp[n][r] = combi(n - 1, r - 1) + combi(n - 1, r);
+	}
+	
+}
+
+//조합공식
+//12! 20! 넘어가는 수라서 따로 다룰 필요가 있다

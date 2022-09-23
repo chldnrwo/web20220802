@@ -1,0 +1,59 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 
+	public static int N,M;
+	public static int[] arr;
+	public static boolean[] visit;
+	public static StringBuilder sb = new StringBuilder();
+	
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		N = in.nextInt(); // N개 중에
+		M = in.nextInt(); // M개 고르기
+		
+		visit = new boolean[N];
+		arr = new int[M];
+		dfs(0);
+		System.out.println(sb);
+	}
+
+	public static void dfs(int depth){ 
+		if(depth == M) {
+			for(int i=0;i<M;i++) {
+				sb.append(arr[i]).append(" ");
+			}
+			sb.append("\n");
+			return;
+		}
+		
+		
+		for(int i=0;i<N;i++) {
+			if(!visit[i]) {
+				visit[i]=true;
+				arr[depth]=i+1;
+				dfs(depth+1);
+				visit[i]=false;
+			}
+		}
+	}
+	
+	
+}
+
+//백트래킹, DFS(넓이 우선 탐색) 문제, DFS는 재귀호출로 푸는게 유리
+//가봤는지 안가봤는지 판단해줄 배열1, 결과값입력을 받을 배열2 최소 2개가 필요함
+//변수들은 전역변수로 쓰는 게 더 편해 보인다.
