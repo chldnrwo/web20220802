@@ -1,0 +1,67 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 	static int N;
+	 	static int arrSave[][] = new int[10][101];
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		int n = in.nextInt();
+		N = n-1;
+		for(int i=0;i<10;i++) {
+			arrSave[i][0]=1;
+		}
+		
+		for(int i=0;i<10;i++) {
+			d(i,N);
+		}
+		
+		
+		
+		int sum=0;
+		for(int i=1;i<10;i++) {
+			sum+=arrSave[i][N]%1000000000;
+			sum=sum%1000000000;
+		}
+		System.out.println(sum);
+		
+	}
+	
+	public static int d(int num, int depth){ 
+
+		if(arrSave[num][depth]==0) {
+			if(num<9&&num>0) {
+				arrSave[num][depth]=d(num+1,depth-1)+d(num-1,depth-1);
+			}
+			else if(num==9) {
+				arrSave[num][depth]=d(num-1,depth-1);
+			}
+			else if(num==0) {
+				arrSave[num][depth]=d(num+1,depth-1);
+			}
+		}
+		
+		
+		return arrSave[num][depth]%1000000000;
+	}
+	
+	
+}
+
+//어레이바운드 일단 모듈러연산은 상관없음
+//1,2,3,4에서 문제
+//ㄴ홀수넣으면 문제 터짐 [0][0]에 값을 안넣어놔서 인덱스가 음수로 갔었음
+//모듈러 제대로 안넣어서 오버플로우 터짐

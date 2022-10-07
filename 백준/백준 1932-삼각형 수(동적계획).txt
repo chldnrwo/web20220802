@@ -1,0 +1,77 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 	static int N;
+	 	static int[][] arr;
+	 	static int[][] arrSave;
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		N = in.nextInt();
+		arrSave=new int[N][N+1];
+		arr= new int[N][N+1];
+		for(int i=0;i<N;i++) {
+			for(int j=1;j<i+2;j++) {
+				arr[i][j]=in.nextInt();
+			}
+		}
+		for(int i=0;i<N;i++) {
+			for(int j=1;j<i+2;j++) {
+				arrSave[i][j]=-1;
+			}
+		}
+		arrSave[0][1] = arr[0][1];
+		
+		int max=d(N-1,1);
+		
+		for(int i=1;i<N+1;i++) {
+			if(d(N-1,i)>max) {
+				max=d(N-1,i);
+			}
+		}
+		System.out.println(max);
+		
+		
+//		for(int i=0;i<N;i++) {
+//			for(int j=0;j<N+1;j++) {
+//				System.out.print(arr[i][j]+" ");
+//			}
+//			System.out.println();
+//		}
+//		for(int i=0;i<N;i++) {
+//			for(int j=0;j<N+1;j++) {
+//				System.out.print(arrSave[i][j]+" ");
+//			}
+//			System.out.println();
+//		}
+		
+	
+	}
+	
+	public static int d(int depth, int num){ 
+		if(arrSave[depth][num]==-1) {
+			
+				arrSave[depth][num]=arr[depth][num]+Math.max(d(depth-1,num),d(depth-1,num-1));
+			
+		}
+		
+		return arrSave[depth][num];
+	}
+	
+	
+}
+
+//빈공간은 0으로 표현했기 때문에 넣을 공간을 -1로 초기화 필요

@@ -1,0 +1,91 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 	static int N;
+	 	static int[][] arr;
+	 	static int[] team;
+	 	static int[] start;
+	 	static int cnt=0;
+	 	static int[][] arrT;
+	 	static List<Integer> list = new ArrayList<Integer>();
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		N = in.nextInt();
+		arr = new int[N][N];
+		team = new int[N];
+		start = new int[N/2];
+		Arrays.fill(team, 1);
+		for(int i=0;i<N;i++) {
+			for(int j=0;j<N;j++) {
+				arr[i][j]=in.nextInt();
+			}
+		}
+		d(0);
+		System.out.println(sub(list));
+	}
+	
+	public static void d(int depth){ 
+		if(depth==N/2) {
+			cnt++;
+			list.add(cp(start));
+			return;
+		}
+		
+		
+		for(int i=0;i<N;i++) {
+			if(team[i]>0) {
+				team[i]--;
+				if(depth>0&&(i+1)>start[depth-1]) {
+					start[depth]=i;
+					d(depth+1);
+					
+				}
+				else if(depth==0) {
+					start[depth]=i;
+					d(depth+1);
+				}
+				
+				team[i]++;
+			}
+		}
+		
+	}
+	public static int cp(int[] start) {
+		int sum=0;
+		for(int i=0;i<N/2;i++) {
+			for(int j=i+1;j<N/2;j++) {
+				sum = sum+arr[start[i]][start[j]]+arr[start[j]][start[i]];
+			}
+		}
+		
+		return sum;
+	}
+	public static int sub(List<Integer> lis){
+		int[] arr = new int[cnt/2];
+		for(int i=0;i<cnt/2;i++) {
+			arr[i] = Math.abs(lis.get(i)-lis.get(cnt-1-i));  
+		}	
+		Arrays.sort(arr);
+		return arr[0];
+	}
+	
+}
+
+//처음 뽑아낸 거는 nPr
+//순서가 상관 없기에 nCr을 뽑아내야된다.
+//앞에 뽑힌 숫자를 못뽑게 한다면 nCr이 나올까? Yes
+//현재 출력된 nCr은 대칭을 이루는 중, 이걸 이용한다면...

@@ -1,0 +1,50 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 static int[] arr = new int[1000001];
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		int N = in.nextInt();
+		arr[1]=1;
+		arr[2]=2;
+		
+		for(int i = 3; i < arr.length; i++) {
+			arr[i] = -1;
+		}
+		
+		System.out.println(d(N));
+		
+	}
+	
+	public static int d(int n){ 
+		if(arr[n]!=-1) {
+			return arr[n];
+		}
+		
+		return arr[n]=(d(n-1)+d(n-2))%15746;
+		
+	}
+	
+	
+}
+
+// 딱 백만이면 인덱스바운드오류
+// 백만+1이면 스택오버플로우
+// 백만단위쯤 가면 int에 못 담을 정도로 커짐, long도 안될듯 
+// 모듈러연산이 해답이었다.
+// N%15746이 0일때도 생길것이므로 -1같이 나올수 없는 수로 초기화
+// 이클립스 내부문제 스택 1024kb에서 256mb로 늘리니까 제대로 나옴 

@@ -1,0 +1,51 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 static Integer[] arrS;
+	 static int max;
+	 static int[] arr;
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		int N = in.nextInt(); 
+		arr = new int[N];
+		arrS = new Integer[N];
+		for(int i=0;i<N;i++) {
+			arr[i]=in.nextInt();
+		}
+		arrS[0] = arr[0];
+		max = arr[0];
+		
+		d(N-1);
+		System.out.println(max);
+	}
+	
+	public static int d(int depth){ 
+		if(arrS[depth]==null) {
+			arrS[depth] = Math.max(d(depth-1)+arr[depth], arr[depth]);
+			
+			max = Math.max(max, arrS[depth]);
+			
+		}
+		
+		return arrS[depth];
+	}
+	
+	
+}
+
+//0부터 N까지의 합 배열 중 가장 큰 값을 저장
+//N개의 값중에서 가장 큰 수 출력

@@ -1,0 +1,52 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	    static int N;
+	    static int[] arr;
+	    static Integer[] arrSave;
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		N = in.nextInt();
+		arr=new int[10001];
+		arrSave = new Integer[10001];
+		for(int i=1;i<=N;i++) {
+			arr[i]=in.nextInt();
+		}
+		arrSave[0] = 0;
+		arrSave[1]=arr[1];
+		arrSave[2]=arr[1]+arr[2];
+		d(N);
+		System.out.println(arrSave[N]);
+	}
+	
+	public static int d(int depth){ 
+		if(arrSave[depth]==null) {
+			arrSave[depth]= Math.max(d(depth-1), 
+					Math.max(d(depth-2)+arr[depth], d(depth-3)+arr[depth]+arr[depth-1]));
+			
+		}
+		
+		return arrSave[depth];
+	}
+	
+	
+}
+
+//올 0 인 경우도 가능하니 인티저배열 쓰자
+//어레이좀 만져줘야됨
+//왠일로 바로 통과하나 했더니 런타임 에러남 최소값 최대값 보자
+//최소값에서 에러났었음

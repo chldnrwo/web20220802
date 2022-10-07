@@ -1,0 +1,173 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+public class Main {
+	 static int N;
+	 static int[][] sdo = new int[9][9];
+	 static int cnt=0;
+	 static List<Integer> listI = new ArrayList<Integer>();
+	 static List<Integer> listJ = new ArrayList<Integer>();
+	 Map<Integer,Integer> map = new HashMap<Integer, Integer>();
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		
+		
+		for(int i=0;i<9;i++) {
+			for(int j=0;j<9;j++) {
+				sdo[i][j]=in.nextInt();
+				if(sdo[i][j]==0) {
+					cnt++;
+					listI.add(i);
+					listJ.add(j);
+				}
+			}
+		}
+		
+		//함수
+		d(0);
+	}
+	
+	public static void d(int depth){ 
+		if(depth==cnt) {
+			for(int i=0;i<9;i++) {
+				for(int j=0;j<9;j++) {
+					System.out.print(sdo[i][j]+" ");
+				}
+				System.out.println();
+			}
+			System.exit(0);
+		}
+		
+		
+		for(int k=1;k<10;k++) {
+			if(pos(depth, k)) {
+				sdo[listI.get(depth)][listJ.get(depth)] = k;
+				d(depth+1);
+				sdo[listI.get(depth)][listJ.get(depth)] = 0;
+			}
+			
+		}
+		
+	}
+	
+	public static boolean pos(int i, int k) {
+		Map<Integer,Integer> map = new HashMap<Integer, Integer>();	
+		for(int m=1;m<10;m++) {
+			map.put(m, m);
+		}
+		for(int m=0;m<9;m++) {
+			map.remove(sdo[listI.get(i)][m]);
+			map.remove(sdo[m][listJ.get(i)]);
+		}
+		if((0<=listI.get(i)&&listI.get(i)<=2)&&
+				(0<=listJ.get(i)&&listJ.get(i)<=2)) {
+			for(int a=0;a<=2;a++) {
+				for(int b=0;b<=2;b++) {
+					map.remove(sdo[a][b]);
+				}
+			}
+			
+		}
+		else if((3<=listI.get(i)&&listI.get(i)<=5)&&
+				(0<=listJ.get(i)&&listJ.get(i)<=2)) {
+			for(int a=3;a<=5;a++) {
+				for(int b=0;b<=2;b++) {
+					map.remove(sdo[a][b]);
+				}
+			}
+			
+		}
+		else if((6<=listI.get(i)&&listI.get(i)<=8)&&
+				(0<=listJ.get(i)&&listJ.get(i)<=2)) {
+			for(int a=6;a<=8;a++) {
+				for(int b=0;b<=2;b++) {
+					map.remove(sdo[a][b]);
+				}
+			}
+			
+		}
+		else if((0<=listI.get(i)&&listI.get(i)<=2)&&
+				(3<=listJ.get(i)&&listJ.get(i)<=5)) {
+			for(int a=0;a<=2;a++) {
+				for(int b=3;b<=5;b++) {
+					map.remove(sdo[a][b]);
+				}
+			}
+			
+		}
+		else if((3<=listI.get(i)&&listI.get(i)<=5)&&
+				(3<=listJ.get(i)&&listJ.get(i)<=5)) {
+			for(int a=3;a<=5;a++) {
+				for(int b=3;b<=5;b++) {
+					map.remove(sdo[a][b]);
+				}
+			}
+			
+		}
+		else if((6<=listI.get(i)&&listI.get(i)<=8)&&
+				(3<=listJ.get(i)&&listJ.get(i)<=5)) {
+			for(int a=6;a<=8;a++) {
+				for(int b=3;b<=5;b++) {
+					map.remove(sdo[a][b]);
+				}
+			}
+			
+		}
+		else if((0<=listI.get(i)&&listI.get(i)<=2)&&
+				(6<=listJ.get(i)&&listJ.get(i)<=8)) {
+			for(int a=0;a<=2;a++) {
+				for(int b=6;b<=8;b++) {
+					map.remove(sdo[a][b]);
+				}
+			}
+			
+		}
+		else if((3<=listI.get(i)&&listI.get(i)<=5)&&
+				(6<=listJ.get(i)&&listJ.get(i)<=8)) {
+			for(int a=3;a<=5;a++) {
+				for(int b=6;b<=8;b++) {
+					map.remove(sdo[a][b]);
+				}
+			}
+			
+		}
+		else if((6<=listI.get(i)&&listI.get(i)<=8)&&
+				(6<=listJ.get(i)&&listJ.get(i)<=8)) {
+			for(int a=6;a<=8;a++) {
+				for(int b=6;b<=8;b++) {
+					map.remove(sdo[a][b]);
+				}
+			}
+			
+		}
+		
+		return map.containsKey(k);	
+	}
+	
+	
+}
+
+//낮거나 같은게 아니라 없는 수를 찾아야될듯
+//list remove 할때 오프젝트가 인티저인 경우라서 제거가 안됨
+//리스트가 아니라 맵을 쓴다면?
+//pos쪽은 잘 작동
+//sdo[?][?]를 먼저 대입하니까 pos가 제대로 작동을 못했음
+//1퍼에서 틀림, 예제는 완벽하게 맞음
+//말그대로 백트래킹 실패시 뒤로가는게 구현안됨, 예제는 백트래킹 필요없이 한번에 나와서 정답이었던 것
+//all 0일때 함수는 return으로 인해 끝난것이 아니다
+//return으로 안끝난다 system exit 써야됨

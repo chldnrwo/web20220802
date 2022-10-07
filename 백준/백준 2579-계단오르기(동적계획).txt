@@ -1,0 +1,56 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 static int N;
+	 static int[] stair;
+	 static int[] arrSave;
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		N = in.nextInt();
+		stair= new int[301];
+		arrSave = new int[301];
+		for(int i=0;i<N;i++) {
+			stair[i]=in.nextInt();
+		}
+		
+		arrSave[0]=stair[0];
+		arrSave[1]=stair[0]+stair[1];
+		arrSave[2]=Math.max(stair[0]+stair[2], stair[1]+stair[2]);
+		d(N-1);
+		System.out.println(arrSave[N-1]);
+		
+	}
+	
+	public static int d(int depth){ 
+		
+		if(arrSave[depth]==0) {
+		
+			arrSave[depth] = Math.max(stair[depth]+d(depth-2),stair[depth]+stair[depth-1]+d(depth-3) );
+		}
+	
+		return arrSave[depth];
+	}
+	
+	
+}
+
+//마지막에 두칸 떨어진 경우와 한칸 떨어진 경우로 나눌수 있는데
+//두칸 떨어진경우 n-2일때의 최대값이 오면되고
+//한칸 떨어진경우 n-3일때의 최대값에서 2칸 뛰고 1칸뛰어서 마무리
+//최대수일땐 문제없고 낮을때 arrayindexbound N이 0,1,2일 때 문제 발생
+//함수 들어오기도 전에 문제가 터진다? 33번줄 문제
+//N이 2이하일때 0,1,2 같은 초기값써서 문제가됨 배열의 크기를 최대값인 300으로 맞춰준다

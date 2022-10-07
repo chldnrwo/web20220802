@@ -1,0 +1,61 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	 static int N;
+	 static int[] chess;
+	 static int cnt=0;
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		N = in.nextInt();
+		chess=new int[N];
+		d(0);
+		System.out.println(cnt);
+	}
+	
+	public static void d(int depth){ 
+		if(depth==N) {
+			cnt++;
+			return;
+		}
+		
+		for(int i=0;i<N;i++) {
+			chess[depth] = i;
+			if(pos(depth)) {
+				d(depth+1);
+			}
+		}	
+	}
+	
+	public static boolean pos(int col) {
+			for(int i=0;i<col;i++) {
+				if(chess[i]==chess[col]) {
+					return false;
+				}
+				else if(Math.abs(chess[i]-chess[col])==Math.abs(i-col)) {
+					return false;
+				}
+				
+			}
+		return true;
+	}
+	
+	
+}
+
+//NxN판에 최대 N개의 퀸이 올라갈수 있다는 대전제가 있다
+//가로 기준이든 세로기준이든 한줄에 한개씩 놓을 수 있다
+//따라서 특정줄에 못놓는 상황이 온다면 백트래킹하는 것이 맞다

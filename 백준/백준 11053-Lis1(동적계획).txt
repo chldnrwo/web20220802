@@ -1,0 +1,56 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	    static int N;
+	    static int[] arr;
+	    static Integer[] arrSave;
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		N = in.nextInt();
+		arr=new int[N];
+		arrSave = new Integer[N];
+		for(int i=0;i<N;i++) {
+			arr[i]=in.nextInt();
+		}
+		for(int i=0;i<N;i++) {
+			d(i);
+		}
+		Arrays.sort(arrSave);
+		System.out.println(arrSave[arrSave.length-1]);
+		
+	}
+	
+	public static int d(int depth){ 
+		if(arrSave[depth]==null) {
+			arrSave[depth]=1;
+			
+			for(int i=depth-1;i>=0;i--) {
+				if(arr[i]<arr[depth]) {
+					arrSave[depth] = Math.max(arrSave[depth], d(i)+1);
+				}
+			}
+		}
+		
+		return arrSave[depth];
+	}
+	
+	
+}
+
+//for문 허용안될줄 알아서 삽질함
+//답안 특성상 제일 끝값이 제일큰것이 아니다
+//소트를 위해선 배열에 null값이 존재해선 안된다
