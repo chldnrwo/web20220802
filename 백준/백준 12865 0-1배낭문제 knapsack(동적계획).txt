@@ -1,0 +1,75 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	   static Integer[][] arrS;
+	   static int[] w;
+	   static int[] p;
+	   static int N;
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		N = in.nextInt();
+		int bag = in.nextInt();
+		arrS = new Integer[N+1][bag+1];
+		w = new int[N+1];
+		p = new int[N+1];
+		for(int i=1;i<=N;i++) {
+			w[i]=in.nextInt();
+			p[i]=in.nextInt();
+		}
+		
+		for(int i=0;i<bag+1;i++) {
+			arrS[0][i]=0;
+		}
+		for(int i=0;i<N+1;i++) {
+			arrS[i][0]=0;
+		}
+		d(N,bag);
+//		System.out.println(Arrays.toString(w));
+//		System.out.println(Arrays.toString(p));
+//		for(int i=0;i<N+1;i++) {
+//			for(int j=0;j<bag+1;j++) {
+//				System.out.print(arrS[i][j]+" ");
+//			}
+//			System.out.println();
+//		}
+		System.out.println(arrS[N][bag]);
+
+	}
+	
+	public static int d(int depth, int bag){
+		
+		if(arrS[depth][bag]==null) {
+			for(int i=1;i<depth+1;i++) {
+				for(int j=1;j<bag+1;j++) {
+					if(w[i]>j) {
+						arrS[i][j]=d(i-1, j);
+					}else {
+						arrS[i][j]=Math.max(d(i-1,j),d(i-1,j-w[i])+p[i]);
+					}
+				}
+			}
+		}
+		
+		return arrS[depth][bag];
+	}
+	
+	
+}
+
+//예제가 별로 쓸모 없어서 있으나마나 하다
+//lcs문제랑 2차원배열 쓰는 점에서 비슷
+//동적배열 가변인 경우

@@ -1,0 +1,44 @@
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//StringTokenizer st = new StringTokenizer(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		
+		List<Integer> list = new ArrayList<Integer>();
+		
+		int N = in.nextInt();
+		int[] arr = new int[N];
+		int[] arrS = new int[N];
+		for(int i=0;i<N;i++) {
+			arr[i]=in.nextInt();
+		}
+		Arrays.sort(arr);
+		int sum=0;
+		for(int i=0;i<N;i++) {
+			sum+=arr[i];
+			arrS[i]=sum;
+		}
+		int sum2=0;
+		for(int i=0;i<N;i++) {
+			sum2+=arrS[i];
+		}
+		System.out.println(sum2);
+		
+	}
+}
+
+//

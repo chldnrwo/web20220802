@@ -1,0 +1,75 @@
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.StringTokenizer;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineFactory;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	public static void main(String[] args) throws NumberFormatException, IOException, ScriptException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//StringTokenizer st = new StringTokenizer(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		
+		Stack<Integer> stack = new Stack<Integer>();
+		
+		int N = Integer.parseInt(br.readLine());
+		for(int i=0;i<N;i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine()," ");
+			String str = st.nextToken();
+			if(str.equals("push")) {
+				
+				int a = Integer.parseInt(st.nextToken());
+				stack.push(a);
+				
+			} else if(str.equals("pop")) {
+				
+				if(stack.empty()) {
+					sb.append(-1+"\n");
+				}else {
+					sb.append(stack.get(stack.size()-1)+"\n");
+					stack.pop();
+				}
+				
+			} else if(str.equals("size")) {
+				
+				sb.append(stack.size()+"\n");
+			
+			} else if(str.equals("empty")) {
+				
+				if(stack.empty()) {
+					sb.append(1+"\n");
+				}else {
+					sb.append(0+"\n");
+				}
+				
+			} else if(str.equals("top")) {
+			
+				
+				if(stack.empty()) {
+					sb.append(-1+"\n");
+				}else {
+					sb.append(stack.get(stack.size()-1)+"\n");
+				}
+			}
+			
+		}
+		System.out.println(sb.toString());
+	}
+}
+
+//스트링 빌더 버퍼리더 써야됨 입출력이 많기에

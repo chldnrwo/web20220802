@@ -1,0 +1,83 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	    static String[] arr1;
+	    static String[] arr2;
+	    static Integer[][] arrS;
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		List<Integer> list = new ArrayList<Integer>();
+		String str1 = in.next();
+		String str2 = in.next();
+		arr1 = new String[str1.length()+1];
+		arr2 = new String[str2.length()+1];
+		arrS = new Integer[arr1.length][arr2.length];
+		arr1[0] = "+";
+		arr2[0] = "-";
+		for(int i=0;i<arr1.length-1;i++) {
+			arr1[i+1]=str1.substring(i, i+1);
+		}
+		for(int i=0;i<arr2.length-1;i++) {
+			arr2[i+1]=str2.substring(i, i+1);
+		}
+//		System.out.println(Arrays.toString(arr1));
+//		System.out.println(Arrays.toString(arr2));
+		
+		for(int i=0;i<arr1.length;i++) {
+			arrS[i][0]=0;
+		}
+		for(int i=0;i<arr2.length;i++) {
+			arrS[0][i]=0;
+		}
+		//여기까지 통과
+		
+		for(int i=0;i<arr1.length;i++) {
+			for(int j=0;j<arr2.length;j++) {
+				d(i,j);
+			}
+		}
+		
+//		for(int i=0;i<arr1.length;i++) {
+//			for(int j=0;j<arr2.length;j++) {
+//				System.out.print(arrS[i][j]+" ");
+//			}
+//			System.out.println();
+//		}
+		System.out.println(arrS[arr1.length-1][arr2.length-1]);
+	}
+	
+	public static Integer d(int i, int j){
+		if(arrS[i][j]==null) {
+			if(arr1[i].equals(arr2[j])) {
+				arrS[i][j]=d(i-1,j-1) + 1;
+			}
+			else {
+				arrS[i][j] = Math.max(d(i-1,j), d(i,j-1));
+			}
+		}
+		
+		return arrS[i][j];
+	}
+	
+	
+}
+
+//둘다 공유하는 알파벳만 남기면 전깃줄 문제와 유사해진다
+//두 배열의 길이가 다를때 문제 발생
+//예제가 앞에 빈값이 잇냐없냐에 따라 값이 달라지는 문제 발생 ㅇ
+//두 배열의 길이가 같다면? - array index bound나더라 다를때도 동작하게 해야함
+//큰값 작은값 다 대응되는거 같음

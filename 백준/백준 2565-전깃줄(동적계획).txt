@@ -1,0 +1,69 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	    static int N;
+	    static int[] arr;
+	    static int[] arr2;
+	    static int[] arrS;
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		List<Integer> list = new ArrayList<Integer>();
+		N = in.nextInt();
+		arr=new int[501];
+		for(int i=0;i<N;i++) {
+			arr[in.nextInt()] = in.nextInt();
+		}
+		for(int i=0;i<arr.length;i++) {
+			if(arr[i]!=0) {
+				list.add(arr[i]);
+			}
+		}
+		arr2 = list.stream()
+                .mapToInt(i -> i)
+                .toArray();
+		//System.out.println(Arrays.toString(arr2));
+		arrS = new int[arr2.length];
+		for(int i=0;i<arrS.length;i++) {
+			d(i);
+		}
+		//System.out.println(Arrays.toString(arrS));
+		Arrays.sort(arrS);
+		System.out.println(N-arrS[arrS.length-1]);
+	}
+	
+	public static int d(int depth){ 
+		if(arrS[depth]==0) {
+			arrS[depth]=1;
+			
+			for(int i=depth-1;i>=0;i--) {
+				if(arr2[depth]>arr2[i]) {
+					arrS[depth]=Math.max(arrS[depth],d(i)+1);
+				}
+			}
+		}
+		
+		return arrS[depth];
+	}
+	
+	
+}
+
+//사이 사이에 있는 0은 의미가 없다
+//전기줄 최대 100개 위치번호 최대 500
+//어레이 인덱스 바운드 터짐
+//일단 최소값쪽에선 에러 안터짐
+//최대값을 500이 아니라 100으로 해놨었음

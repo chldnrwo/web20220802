@@ -1,0 +1,69 @@
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	    static int[][] arrS;
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		StringBuilder sb = new StringBuilder();
+		
+		int N = in.nextInt();
+		int M = in.nextInt();
+		int[] arr = new int[N];
+		arrS = new int[N][N];
+		for(int i=0;i<N;i++) {
+			arr[i] = in.nextInt();
+		}
+		
+		for(int i=0;i<N;i++) {
+			for(int j=0;j<N;j++) {
+				arrS[i][j]=-1;
+			}
+		}
+		
+		for(int i=0;i<N;i++) {
+			arrS[0][i] = arr[i]%M;
+		}
+		
+		for(int i=1;i<N;i++) {
+			for(int j=0;j<N-i;j++) {
+				arrS[i][j]=(arrS[i-1][j]+arr[i+j])%M;
+				
+			}
+		}
+		int cnt=0;
+		for(int i=0;i<N;i++) {
+			for(int j=0;j<N;j++) {
+				if(arrS[i][j]==0) {
+					cnt++;
+				}
+			}
+		}
+		System.out.println(cnt);
+//		for(int i=0;i<N;i++) {
+//			for(int j=0;j<N;j++) {
+//				System.out.print(arrS[i][j]+" ");
+//			}
+//			System.out.println();
+//		}
+		
+		
+	}
+	
+	
+	
+}
+
+// 필요에 따라 세이브배열 초기화 염두
+// 메모리 초과

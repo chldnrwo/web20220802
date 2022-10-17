@@ -1,0 +1,74 @@
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	    static int[][] arrS; 
+	    static String str;
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		StringBuilder sb = new StringBuilder();
+		
+		str = br.readLine();
+		
+		arrS = new int[26][str.length()+1];
+		for(int i=1;i<=str.length();i++) {
+			for(int j=0;j<26;j++) {
+				arrS[j][i] = arrS[j][i-1];
+			}
+			arrS[str.charAt(i-1)-'a'][i] +=1;
+		}
+		
+		
+//		for(int i=0;i<26;i++) {
+//			for(int j=1;j<str.length();j++) {
+//				System.out.print(arrS[i][j]+" ");
+//			}
+//			System.out.println();
+//		}
+		
+		
+		int N = Integer.parseInt(br.readLine());
+		for(int i=0;i<N;i++) {
+			st = new StringTokenizer(br.readLine());
+			char ch = st.nextToken().charAt(0);
+			int a = Integer.parseInt(st.nextToken());
+			int b = Integer.parseInt(st.nextToken());
+			
+			int c = arrS[ch-97][b+1]-arrS[ch-97][a];
+			sb.append(c+"\n");
+		}      
+		System.out.println(sb.toString());
+	}
+	
+	
+	
+}
+
+//최소값은 오류남
+/* 반례
+	seungjaehwang
+	4
+	a 0 5 
+	e 1 7 
+	h 6 10
+	g 0 12
+*/
+// 기준이 되는 소문자가 바뀌면 arrS배열도 초기화
+// 버퍼리더로 변경
+// 26가지를 미리 만들어두는게 아니라 26가지가 들어갈 칸을 미리 만들고
+// 채우는 것  a->b->c->a 값이 들어올때 a 누적합을 다시 안만들어도 되게
+//  charAt쓰면 문자르 안쪼개둬도 된다
+// 배열 다 채워놓는 방식 => 칸만 열어두고 필요한것만 채울때보다 느려짐
+// 배열을 빠르게 채워야한다 Integer로 시작해서 무의미하게 null을 채우는 과정도 덜어내야됨
+// 일일히 판별 하지 않는다.

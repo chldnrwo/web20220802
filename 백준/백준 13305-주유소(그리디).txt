@@ -1,0 +1,52 @@
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineFactory;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	public static void main(String[] args) throws NumberFormatException, IOException, ScriptException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//StringTokenizer st = new StringTokenizer(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		
+		long N = in.nextInt();
+		long[] road = new long[(int)N-1];
+		long[] gas = new long[(int)N]; 
+		for(int i=0;i<N-1;i++) {
+			road[i] = in.nextLong();
+		}
+		for(int i=0;i<N;i++) {
+			gas[i]=in.nextLong();
+		}
+		long temp=road[0] * gas[0];
+		
+		long minGas = gas[0];
+		for(int i=1;i<N-1;i++) {
+			if(gas[i]<minGas) {
+				minGas = gas[i];
+				temp+=gas[i]*road[i];
+			}else {
+				temp+=minGas*road[i];
+			}
+			
+		}
+	    System.out.println(temp);
+	}
+}
+
+//서브태스크 때문에 long 스트링빌더 버퍼리더 필요할수도

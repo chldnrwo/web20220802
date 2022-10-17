@@ -1,0 +1,92 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	    static Integer[] arrS; 
+	    static String[] arr;
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		String str = in.next();
+		int N=in.nextInt();
+		arr = new String[str.length()+1];
+		arr[0]="-";
+		for(int i=1;i<str.length()+1;i++) {
+			arr[i] = str.substring(i-1, i);
+		}
+		//System.out.println(Arrays.toString(arr));
+		
+		
+		//d(13,ch);
+		//System.out.println(Arrays.toString(arrS));
+		
+//		System.out.println(e(0, 5));
+//		System.out.println(e(0, 6));
+//		System.out.println(e(6, 10));
+//		System.out.println(e(7, 10));
+		
+		for(int i=0;i<N;i++) {
+			arrS = new Integer[str.length()+1];
+			arrS[0]=0;
+			String ch = in.next();
+			
+			if(arr[1].equals(ch)) {
+				arrS[1] = 1;
+			}else {
+				arrS[1] = 0;
+			}
+			
+			d(str.length(), ch);
+			//System.out.println(Arrays.toString(arr));
+			//System.out.println(Arrays.toString(arrS));
+			
+			int a = in.nextInt();
+			int b = in.nextInt();
+			sb.append(e(a, b)+"\n");
+		}      
+		System.out.println(sb.toString());
+	}
+	
+	public static int d(int depth, String ch){
+		if(arrS[depth]==null) {
+			if(arr[depth].equals(ch)) {
+				arrS[depth] = d(depth-1,ch) + 1;
+			}else {
+				arrS[depth] = d(depth-1,ch);
+			}
+		}
+		
+		return arrS[depth];
+	}
+	
+	public static int e(int begin, int end){
+		//System.out.println(arrS[end+1]+" "+arrS[begin]);
+		
+		return arrS[end+1] - arrS[begin];	
+	}
+	
+}
+
+//최소값은 오류남
+/* 반례
+	seungjaehwang
+	4
+	a 0 5 
+	e 1 7 
+	h 6 10
+	g 0 12
+*/
+// 기준이 되는 소문자가 바뀌면 arrS배열도 초기화
+// 50 점 나옴

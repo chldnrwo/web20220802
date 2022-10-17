@@ -1,0 +1,51 @@
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		StringBuilder sb = new StringBuilder();
+		
+		long N = in.nextLong();
+		long M = in.nextLong();
+		long[] cnt = new long[(int)M];
+		
+		long sum=0;
+
+		//System.out.println(Arrays.toString(cnt));
+		for(int i=0;i<N;i++) {
+			sum += in.nextInt();
+			sum %= M;
+			cnt[(int)sum]++;
+			//System.out.println(Arrays.toString(cnt));
+		}
+		//System.out.println(Arrays.toString(cnt));
+		
+		long sum2=0;
+		sum2 += cnt[0];
+		for(int i=0;i<M;i++) {
+			sum2 += (cnt[i] * (cnt[i]-1) / 2);
+		}
+		System.out.println(sum2);
+		
+	}
+	
+	
+	
+}
+
+// 필요에 따라 세이브배열 초기화 염두
+// 메모리 초과
+// 1퍼에서 답틀림
+// int형 써서 큰 수에서 오버플로우 일어남 long으로 통일 변경

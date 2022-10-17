@@ -1,0 +1,84 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	    static int N;
+	    static int[] arr;
+	    static Integer[] arrSave;
+	    static Integer[] arrSave2;
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		//String str = sb.toString();
+		//String[] arr = new String[a.length()];
+		N = in.nextInt();
+		arr=new int[N];
+		arrSave = new Integer[N];
+		arrSave2 = new Integer[N];
+		int[] arrSaveF = new int[N];
+		for(int i=0;i<N;i++) {
+			arr[i]=in.nextInt();
+		}
+		for(int i=0;i<N;i++) {
+			d(i);
+			e(i);
+		}
+		for(int i=0;i<N;i++) {
+			d(i);
+			e(i);
+		}
+		for(int i=0;i<N;i++) {
+			arrSaveF[i]=arrSave[i]+arrSave2[i]-1;
+		}
+//		System.out.println(Arrays.toString(arrSave));
+//		System.out.println(Arrays.toString(arrSave2));
+//		System.out.println(Arrays.toString(arrSaveF));
+		Arrays.sort(arrSaveF);
+		System.out.println(arrSaveF[arrSaveF.length-1]);
+		
+	}
+	
+	public static int d(int depth){ 
+		if(arrSave2[depth]==null) {
+			arrSave2[depth]=1;
+			
+			for(int i=depth+1;i<N;i++) {
+				if(arr[i]<arr[depth]) {
+					arrSave2[depth] = Math.max(arrSave2[depth], d(i)+1);
+				}
+			}
+		}
+		
+		return arrSave2[depth];
+	}
+	
+	public static int e(int depth){ 
+		if(arrSave[depth]==null) {
+			arrSave[depth]=1;
+			
+			for(int i=depth-1;i>=0;i--) {
+				if(arr[i]<arr[depth]) {
+					arrSave[depth] = Math.max(arrSave[depth], e(i)+1);
+				}
+			}
+		}
+		
+		return arrSave[depth];
+	}
+	
+	
+}
+
+//역Lis를 걸었을때 학원이랑 다르게 나옴
+//바로 틀림
+//e쪽 재귀 수열이 d였는데 예제는 올바르게 나옴;
