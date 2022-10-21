@@ -1,0 +1,247 @@
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.StringTokenizer;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineFactory;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+public class Main {
+		static StringBuilder sb = new StringBuilder();
+		static int cntm;
+		static int cnt0;
+		static int cnt1;
+	public static void main(String[] args) throws Exception{
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		
+		int N = Integer.parseInt(br.readLine());
+		int[][] arr = new int[N][N];
+		for(int i=0;i<N;i++) {
+			st = new StringTokenizer(br.readLine());
+			for(int j=0;j<N;j++) {
+				arr[i][j] = Integer.parseInt(st.nextToken());
+			}
+		}
+		
+//		for(int i=0;i<N;i++) {
+//			for(int j=0;j<N;j++) {
+//				System.out.print(arr[i][j]+" ");
+//			}
+//			System.out.println();
+//		}
+		d(arr,N);
+		sb.append(cntm+"\n");
+		sb.append(cnt0+"\n");
+		sb.append(cnt1+"\n");
+		System.out.println(sb.toString());
+	}
+	
+	public static void d(int[][] arr, int N) {
+		if(check(arr)) {
+			if(arr[0][0]==0) {
+				cnt0++;
+			}else if(arr[0][0]==1){
+				cnt1++;
+			}else {
+				cntm++;
+			}
+			return;
+		}
+		
+		
+		
+		int[][] arr1 = new int[N/3][N/3];
+		int[][] arr2 = new int[N/3][N/3]; 
+		int[][] arr3 = new int[N/3][N/3]; 
+		int[][] arr4 = new int[N/3][N/3];
+		int[][] arr5 = new int[N/3][N/3];
+		int[][] arr6 = new int[N/3][N/3]; 
+		int[][] arr7 = new int[N/3][N/3]; 
+		int[][] arr8 = new int[N/3][N/3];
+		int[][] arr9 = new int[N/3][N/3];
+		
+		for(int i=0;i<N/3;i++) {
+			for(int j=0;j<N/3;j++) {
+				arr1[i][j]=arr[i][j];
+			}
+		}
+		for(int i=0;i<N/3;i++) {
+			for(int j=0;j<N/3;j++) {
+				arr2[i][j]=arr[i][j+N/3];
+			}
+		}
+		for(int i=0;i<N/3;i++) {
+			for(int j=0;j<N/3;j++) {
+				arr3[i][j]=arr[i][j+N/3+N/3];
+			}
+		}
+		for(int i=0;i<N/3;i++) {
+			for(int j=0;j<N/3;j++) {
+				arr4[i][j]=arr[i+N/3][j];
+			}
+		}
+		for(int i=0;i<N/3;i++) {
+			for(int j=0;j<N/3;j++) {
+				arr5[i][j]=arr[i+N/3][j+N/3];
+			}
+		}
+		for(int i=0;i<N/3;i++) {
+			for(int j=0;j<N/3;j++) {
+				arr6[i][j]=arr[i+N/3][j+N/3+N/3];
+			}
+		}
+		for(int i=0;i<N/3;i++) {
+			for(int j=0;j<N/3;j++) {
+				arr7[i][j]=arr[i+N/3+N/3][j];
+			}
+		}
+		for(int i=0;i<N/3;i++) {
+			for(int j=0;j<N/3;j++) {
+				arr8[i][j]=arr[i+N/3+N/3][j+N/3];
+			}
+		}
+		for(int i=0;i<N/3;i++) {
+			for(int j=0;j<N/3;j++) {
+				arr9[i][j]=arr[i+N/3+N/3][j+N/3+N/3];
+			}
+		}
+		
+		if(check(arr1)) {
+			if(arr1[0][0]==0) {
+				cnt0++;
+			}else if(arr1[0][0]==1){
+				cnt1++;
+			}else {
+				cntm++;
+			}
+		}else {
+			d(arr1, N/3);
+		}
+		if(check(arr2)) {
+			if(arr2[0][0]==0) {
+				cnt0++;
+			}else if(arr2[0][0]==1){
+				cnt1++;
+			}else {
+				cntm++;
+			}
+		}else {
+			d(arr2, N/3);
+		}
+		if(check(arr3)) {
+			if(arr3[0][0]==0) {
+				cnt0++;
+			}else if(arr3[0][0]==1){
+				cnt1++;
+			}else {
+				cntm++;
+			}
+		}else {
+			d(arr3, N/3);
+		}
+		if(check(arr4)) {
+			if(arr4[0][0]==0) {
+				cnt0++;
+			}else if(arr4[0][0]==1){
+				cnt1++;
+			}else {
+				cntm++;
+			}
+		}else {
+			d(arr4, N/3);
+		}
+		if(check(arr5)) {
+			if(arr5[0][0]==0) {
+				cnt0++;
+			}else if(arr5[0][0]==1){
+				cnt1++;
+			}else {
+				cntm++;
+			}
+		}else {
+			d(arr5, N/3);
+		}
+		if(check(arr6)) {
+			if(arr6[0][0]==0) {
+				cnt0++;
+			}else if(arr6[0][0]==1){
+				cnt1++;
+			}else {
+				cntm++;
+			}
+		}else {
+			d(arr6, N/3);
+		}
+		if(check(arr7)) {
+			if(arr7[0][0]==0) {
+				cnt0++;
+			}else if(arr7[0][0]==1){
+				cnt1++;
+			}else {
+				cntm++;
+			}
+		}else {
+			d(arr7, N/3);
+		}
+		if(check(arr8)) {
+			if(arr8[0][0]==0) {
+				cnt0++;
+			}else if(arr8[0][0]==1){
+				cnt1++;
+			}else {
+				cntm++;
+			}
+		}else {
+			d(arr8, N/3);
+		}
+		if(check(arr9)) {
+			if(arr9[0][0]==0) {
+				cnt0++;
+			}else if(arr9[0][0]==1){
+				cnt1++;
+			}else {
+				cntm++;
+			}
+		}else {
+			d(arr9, N/3);
+		}
+	}
+	
+	public static boolean check(int[][] arr) {
+		int ruler = arr[0][0];
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr.length;j++) {
+				if(arr[i][j]!=ruler) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+}
+
+
+
+
+//시간초과
+//색종이 문제 그대로 풀 경우 시간초과 
+//같은 코드인데 스캐너는 통과X 버퍼리더는 통과
+//속도 2900가량 솔루션보다 3배정도 비효율적인 알고리즘
+//스트링빌더 버퍼리더 굳

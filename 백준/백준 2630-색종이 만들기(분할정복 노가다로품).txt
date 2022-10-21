@@ -1,0 +1,150 @@
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.StringTokenizer;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineFactory;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+public class Main {
+		static StringBuilder sb = new StringBuilder();
+		static int cnt0;
+		static int cnt1;
+	public static void main(String[] args) throws NumberFormatException, IOException, ScriptException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//StringTokenizer st = new StringTokenizer(br.readLine());
+		
+		
+		
+		int N = in.nextInt();
+		int[][] arr = new int[N][N];
+		for(int i=0;i<N;i++) {
+			for(int j=0;j<N;j++) {
+				arr[i][j] = in.nextInt();
+			}
+		}
+		
+//		for(int i=0;i<N;i++) {
+//			for(int j=0;j<N;j++) {
+//				System.out.print(arr[i][j]+" ");
+//			}
+//			System.out.println();
+//		}
+		d(arr,N);
+		System.out.println(cnt0);
+		System.out.println(cnt1);
+	}
+	
+	public static void d(int[][] arr, int N) {
+		if(check(arr)) {
+			if(arr[0][0]==0) {
+				cnt0++;
+			}else {
+				cnt1++;
+			}
+			return;
+		}
+		
+		
+		
+		int[][] arr1 = new int[N/2][N/2];
+		int[][] arr2 = new int[N/2][N/2]; 
+		int[][] arr3 = new int[N/2][N/2]; 
+		int[][] arr4 = new int[N/2][N/2];
+		
+		for(int i=0;i<N/2;i++) {
+			for(int j=0;j<N/2;j++) {
+				arr1[i][j]=arr[i][j];
+			}
+		}
+		for(int i=0;i<N/2;i++) {
+			for(int j=0;j<N/2;j++) {
+				arr2[i][j]=arr[i][j+N/2];
+			}
+		}
+		for(int i=0;i<N/2;i++) {
+			for(int j=0;j<N/2;j++) {
+				arr3[i][j]=arr[i+N/2][j];
+			}
+		}
+		for(int i=0;i<N/2;i++) {
+			for(int j=0;j<N/2;j++) {
+				arr4[i][j]=arr[i+N/2][j+N/2];
+			}
+		}
+		
+		if(check(arr1)) {
+			if(arr1[0][0]==0) {
+				cnt0++;
+			}else {
+				cnt1++;
+			}
+		}else {
+			d(arr1, N/2);
+		}
+		
+		if(check(arr2)) {
+			if(arr2[0][0]==0) {
+				cnt0++;
+			}else {
+				cnt1++;
+			}
+		}else {
+			d(arr2, N/2);
+		}
+		
+		if(check(arr3)) {
+			if(arr3[0][0]==0) {
+				cnt0++;
+			}else {
+				cnt1++;
+			}
+		}else {
+			d(arr3, N/2);
+		}
+		
+		if(check(arr4)) {
+			if(arr4[0][0]==0) {
+				cnt0++;
+			}else {
+				cnt1++;
+			}
+		}else {
+			d(arr4, N/2);
+		}
+	}
+	
+	public static boolean check(int[][] arr) {
+		int ruler = arr[0][0];
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr.length;j++) {
+				if(arr[i][j]!=ruler) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+}
+
+
+
+//우선 개노가다
+//시간초과나 메모리 초과도 아니고 틀렸다?
+//첫 시작이 전부 같을 경우 = 분할부터 해버림

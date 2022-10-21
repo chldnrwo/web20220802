@@ -1,0 +1,91 @@
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.StringTokenizer;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineFactory;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+public class Main {
+	static StringBuilder sb = new StringBuilder();
+	static int[][] arr;
+	static final int modN = 1000;
+	static int N;
+	public static void main(String[] args) throws Exception {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//StringTokenizer st = new StringTokenizer(br.readLine());
+		
+		N = in.nextInt();
+		long M = in.nextLong();
+		arr = new int[N][N];
+		for(int i=0;i<N;i++) {
+			for(int j=0;j<N;j++) {
+				arr[i][j]=in.nextInt();
+			}
+		}
+		int arr1[][] = partition(arr, M);
+		
+		for(int i=0;i<N;i++) {
+			for(int j=0;j<N;j++) {
+				System.out.print(arr1[i][j]+" ");
+			}
+			System.out.println();
+		}
+		
+	}
+	
+	public static int[][] partition(int[][] a, long m) {
+		if(m==1) {
+			for(int i=0;i<N;i++) {
+				for(int j=0;j<N;j++) {
+					a[i][j]=a[i][j]%modN;
+				}
+			}
+			return a;
+		}
+		
+		int[][] tp = partition(a, m/2);
+		
+		tp = mul(tp,tp);
+		if(m%2==1) {
+			tp = mul(tp, arr);
+		}
+		return tp;
+	}
+	
+	public static int[][] mul(int[][] arr1, int[][] arr2){
+		int[][] arr3=new int[N][N];
+		for(int i=0;i<N;i++) {
+			for(int j=0;j<N;j++) {
+				for(int k=0;k<N;k++) {
+					arr3[i][j]+=arr1[i][k]*arr2[k][j];
+					arr3[i][j]%=modN;
+				}
+			}
+		}
+		
+		
+		return arr3;
+	}
+	
+}
+
+// 제곱 1일때 오류  1000 1000 1000 1000
+// B에 int 로 못받는
+// 곱셈 함수 잘못 만들었었다
+//상위문제 풀땐 스트라센 알고리즘 사용할것

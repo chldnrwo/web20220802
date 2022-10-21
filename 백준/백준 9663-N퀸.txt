@@ -20,6 +20,7 @@ public class Main {
 		StringBuilder sb = new StringBuilder();
 		//String str = sb.toString();
 		//String[] arr = new String[a.length()];
+		
 		N = in.nextInt();
 		chess=new int[N];
 		d(0);

@@ -1,0 +1,83 @@
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.StringTokenizer;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineFactory;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+public class Main {
+		static StringBuilder sb = new StringBuilder();
+	public static void main(String[] args) throws NumberFormatException, IOException, ScriptException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//StringTokenizer st = new StringTokenizer(br.readLine());
+		
+		
+		
+		int N = Integer.parseInt(br.readLine());
+		for(int i=0;i<N;i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			int size = Integer.parseInt(st.nextToken());
+			int seq = Integer.parseInt(st.nextToken());
+			
+			Deque<Integer> q = new LinkedList<Integer>();
+			Deque<Integer> q2 = new LinkedList<Integer>();
+			st = new StringTokenizer(br.readLine());
+			for(int j=0;j<size;j++) {
+				q.offer(Integer.parseInt(st.nextToken()));
+				q2.offer(j);
+			}
+			
+			int cnt=0;
+			for(int j=9;j>=1;j--) {
+				while(q.contains(j)) {
+					if(q.peek()==j) {
+						q.pop();
+						cnt++;
+						
+						if(seq==q2.peek()) {
+							sb.append(cnt+"\n");
+						}
+						q2.pop();
+						
+					}else {
+						int temp = q.peek();
+						q.pop();
+						q.offer(temp);	
+						int temp2 = q2.peek();
+						q2.pop();
+						q2.offer(temp2);	
+						
+					}
+					
+					
+					
+				}
+			}		
+		}
+		System.out.println(sb.toString());
+	}
+	
+	
+}
+
+
+
+
+//스트링 빌더 버퍼리더 써야됨 입출력이 많기에
+//스트링 빌더로 리턴하는 방법도 있다

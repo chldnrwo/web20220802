@@ -1,0 +1,86 @@
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.StringTokenizer;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineFactory;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+		static StringBuilder sb = new StringBuilder();
+	public static void main(String[] args) throws NumberFormatException, IOException, ScriptException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//StringTokenizer st = new StringTokenizer(br.readLine());
+		
+		int N = Integer.parseInt(br.readLine());
+		int[] arr = new int[N];
+		for(int i=0;i<N;i++) {
+			arr[i]=Integer.parseInt(br.readLine());
+		}
+		
+		d(N, arr);
+		
+		System.out.println(sb.toString());
+		
+		
+	}
+	
+	
+	public static void d(int N, int[] arr) {
+		Stack<Integer> stack = new Stack<Integer>();
+		int num=1;
+		stack.push(num);
+		sb.append("+\n");
+		//System.out.println(stack.toString());
+		for(int i=0;i<N;i++) {
+			
+			while(true){
+				if(stack.empty()) {
+					num++;
+					stack.push(num);
+					sb.append("+\n");
+				}
+				else if(stack.get(stack.size()-1)==arr[i]) {
+					stack.pop();
+					sb.append("-\n");
+					//System.out.println(stack.toString());
+					break;
+				}else{
+					num++;
+					stack.push(num);
+					sb.append("+\n");
+					//System.out.println(stack.toString());	
+				}
+				
+				if(num>N) {
+					System.out.println("NO");
+					System.exit(0);
+				}
+			}
+			
+			
+		}
+		
+		
+		
+	}
+}
+
+
+
+
+//스트링 빌더 버퍼리더 써야됨 입출력이 많기에
+//스트링 빌더로 리턴하는 방법도 있다

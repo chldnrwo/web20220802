@@ -1,0 +1,76 @@
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.StringTokenizer;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineFactory;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+public class Main {
+	static StringBuilder sb = new StringBuilder();
+	
+	public static void main(String[] args) throws Exception {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//StringTokenizer st = new StringTokenizer(br.readLine());
+		
+		int N = in.nextInt();
+		int M = in.nextInt();
+		int[][] arr = new int[N][M];
+		for(int i=0;i<N;i++) {
+			for(int j=0;j<M;j++) {
+				arr[i][j]=in.nextInt();
+			}
+		}
+		M = in.nextInt();
+		int K = in.nextInt();
+		int[][] arr2 = new int[K][M];
+		for(int i=0;i<M;i++) {
+			for(int j=0;j<K;j++) {
+				arr2[j][i]=in.nextInt();
+			}
+		}
+//		for(int i=0;i<K;i++) {
+//			for(int j=0;j<M;j++) {
+//				System.out.print(arr2[i][j]+" ");
+//			}
+//			System.out.println();
+//		}
+		for(int i=0;i<N;i++) {
+			for(int j=0;j<K;j++) {
+				
+				System.out.print(plus(arr[i], arr2[j])+" ");
+			}
+			System.out.println();
+		}
+//		System.out.println(Arrays.toString(arr[0]));
+//		System.out.println(Arrays.toString(arr2[0]));
+//		System.out.println(plus(arr[0], arr2[0]));		
+		
+	}
+	
+	
+	public static int plus(int[] arr, int[] arr2) {
+		int sum=0;
+		for(int i=0;i<arr.length;i++) {
+			sum+=(arr[i]*arr2[i]);
+		}
+		return sum;
+	}
+}
+
+//상위문제 풀땐 스트라센 알고리즘 사용할것

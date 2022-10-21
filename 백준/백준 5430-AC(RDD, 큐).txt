@@ -1,0 +1,114 @@
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.StringTokenizer;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineFactory;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+public class Main {
+		static StringBuilder sb = new StringBuilder();
+		static StringBuilder sb2 = new StringBuilder();
+	public static void main(String[] args) throws NumberFormatException, IOException, ScriptException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//StringTokenizer st = new StringTokenizer(br.readLine());
+		
+		
+		
+		int N = Integer.parseInt(br.readLine());
+		
+		for(int i=0;i<N;i++) {
+			Deque<Integer> q = new LinkedList<Integer>();
+			String str = br.readLine();
+			int M = Integer.parseInt(br.readLine());
+			String arr = br.readLine();
+			String s = arr.substring(1, arr.length()-1);
+			String[] arr1 = s.split(",");
+			int[] nums = {};
+			if(!arr1[0].equals("")) {
+				nums = Arrays.stream(arr1).mapToInt(Integer::parseInt).toArray();
+			}
+			
+			for(int j=0;j<M;j++) {
+				q.offer(nums[j]);
+			}
+			String[] arrS = new String[str.length()];
+			for(int j=0;j<str.length();j++) {
+				arrS[j]=str.substring(j, j+1);
+			}
+			d(q,arrS);
+			
+		}
+		System.out.println(sb.toString());
+	}
+	
+	public static StringBuilder d(Deque<Integer> q, String[] arrS){
+		
+		boolean startLeft = true;
+		
+		for(int i=0;i<arrS.length;i++) {
+			if(arrS[i].equals("R")) {
+				startLeft = !startLeft;
+				continue;
+			}
+			if(arrS[i].equals("D")) {
+				if(startLeft) {
+					if(q.isEmpty()) {
+						return sb.append("error\n");
+					}else {
+						q.pollFirst();
+					}
+				}else {
+					if(q.isEmpty()) {
+						return sb.append("error\n");
+					}else {
+						q.pollLast();
+					}
+				}
+			}	
+		}
+		sb.append("[");
+		if(q.size()>0) {
+			if(startLeft) {
+				sb.append(q.pollFirst());
+				while(!q.isEmpty()) {
+					sb.append(","+q.pollFirst());
+				}
+			}
+			else {
+				sb.append(q.pollLast());
+				while(!q.isEmpty()) {
+					sb.append(","+q.pollLast());
+				}
+			}
+		}
+		sb.append("]\n");
+		return sb;
+		
+	}
+	
+	
+	
+	
+}
+
+
+
+//R쪽 예외처리 안했음
+//토크나이저 안쓰면 잘 닫아놓자
+//꼭 리버스를 구현할 필요는 없엇다 deque에서는

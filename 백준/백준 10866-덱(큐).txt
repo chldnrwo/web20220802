@@ -1,0 +1,94 @@
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.StringTokenizer;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineFactory;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+public class Main {
+		static StringBuilder sb = new StringBuilder();
+	public static void main(String[] args) throws NumberFormatException, IOException, ScriptException {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//StringTokenizer st = new StringTokenizer(br.readLine());
+		
+		Deque<Integer> q = new LinkedList<Integer>();
+		
+		int N = Integer.parseInt(br.readLine());
+		for(int i=0;i<N;i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine()," ");
+			String str = st.nextToken();
+			if(str.equals("push_front")) {
+				int a = Integer.parseInt(st.nextToken());
+				q.addFirst(a);
+			}
+			else if(str.equals("push_back")) {
+				int a = Integer.parseInt(st.nextToken());
+				q.addLast(a);
+			}
+			else if(str.equals("pop_front")) {
+				if(q.isEmpty()) {
+					sb.append(-1+"\n");
+				}else {
+					sb.append(q.removeFirst()+"\n");
+				}
+			}
+			else if(str.equals("pop_back")) {
+				if(q.isEmpty()) {
+					sb.append(-1+"\n");
+				}else {
+					sb.append(q.removeLast()+"\n");
+				}
+			}
+			else if(str.equals("size")) {
+				sb.append(q.size()+"\n");
+			}
+			else if(str.equals("empty")) {
+				if(q.isEmpty()) {
+					sb.append(1+"\n");
+				}else {
+					sb.append(0+"\n");
+				}
+			}
+			else if(str.equals("front")) {
+				if(q.isEmpty()) {
+					sb.append(-1+"\n");
+				}else {
+					sb.append(q.peek()+"\n");
+				}
+			}
+			else if(str.equals("back")) {
+				if(q.isEmpty()) {
+					sb.append(-1+"\n");
+				}else {
+					sb.append(q.peekLast()+"\n");
+				}
+			}
+			
+		}
+		System.out.println(sb.toString());
+	}
+	
+	
+}
+
+
+
+
+//스트링 빌더 버퍼리더 써야됨 입출력이 많기에
+//스트링 빌더로 리턴하는 방법도 있다
