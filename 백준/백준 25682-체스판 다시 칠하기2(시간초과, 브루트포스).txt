@@ -1,0 +1,106 @@
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.StringTokenizer;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineFactory;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+public class Main {
+	 
+	public static boolean[][] arr;
+	public static int min;
+	static int K;
+	public static void main(String[] args) {
+ 
+		Scanner in = new Scanner(System.in);
+ 
+		int N = in.nextInt();
+		int M = in.nextInt();
+		K = in.nextInt();
+		arr = new boolean[N][M];
+		min = K*K;
+        
+		// 배열 입력 
+		for (int i = 0; i < N; i++) {
+			String str = in.next();
+			
+			for (int j = 0; j < M; j++) {
+				if (str.charAt(j) == 'W') {
+					arr[i][j] = true;		// W일 때는 true 
+				} else {
+					arr[i][j] = false;		// B일 때는 false
+				}
+ 
+			}
+		}
+ 
+		
+		int N_row = N - (K-1);
+		int M_col = M - (K-1);
+		
+		for (int i = 0; i < N_row; i++) {
+			for (int j = 0; j < M_col; j++) {
+				find(i, j);
+			}
+		}
+		System.out.println(min);
+	}
+ 
+	
+	public static void find(int x, int y) {
+		int end_x = x + K;
+		int end_y = y + K;
+		int count = 0;
+ 
+		boolean TF = arr[x][y];	// 첫 번째 칸의 색 
+ 
+		for (int i = x; i < end_x; i++) {
+			for (int j = y; j < end_y; j++) {
+				// 올바른 색이 아닐경우 count 1 증가 
+				if (arr[i][j] != TF) {
+					count++;
+				}
+				
+				/* 
+				 * 다음 칸은 색이 바뀌므로
+				 * true라면 false로, false 라면 true 로
+				 * 값을 변경한다.
+				 */
+				TF = (!TF);
+			}
+			if(K%2==0) {
+				TF = !TF;
+			}
+		}
+		/*
+		 *  첫 번째 칸을 기준으로 할 때의 색칠 할 개수(count)와
+		 *  첫 번째 칸의 색의 반대되는 색을 기준으로 할 때의
+		 *  색칠 할 개수(64 - count) 중 최솟값을 count 에 저장 
+		 */
+		
+		count = Math.min(count, K*K - count);
+		
+		/*
+		 * 이전까지의 경우 중 최솟값보다 현재 count 값이
+		 * 더 작을 경우 최솟값을 갱신 
+		 */
+		min = Math.min(min, count);
+	}
+}
+
+//실버문제 변형은 시간초과

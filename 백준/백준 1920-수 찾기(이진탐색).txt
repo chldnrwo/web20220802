@@ -1,0 +1,60 @@
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+		static int[] arr;
+		static StringBuilder sb = new StringBuilder();
+	public static void main(String[] args) throws Exception {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//StringTokenizer st = new StringTokenizer(br.readLine());
+
+		int N = in.nextInt();
+		arr = new int[N];
+		
+		for(int i=0;i<N;i++) {
+				arr[i]=in.nextInt();
+		}
+		Arrays.sort(arr);
+		
+		int M = in.nextInt();
+		for(int i=0;i<M;i++) {
+			check(in.nextInt(), 0, arr.length-1);
+		}
+		System.out.println(sb);
+	}
+	
+	public static void check(int a, int bot, int top) {
+		
+		int mid = (bot+top)/2;
+		
+		if(a==arr[mid]) {
+			sb.append(1).append("\n");
+			return;
+		}
+		
+		if(bot==top) {
+			sb.append(0).append("\n");
+			return;
+		}
+		
+		if(a>arr[mid]) {
+			check(a,mid+1,top);
+		}else {
+			check(a,bot,mid);
+		}
+		
+	}
+}
+
+//

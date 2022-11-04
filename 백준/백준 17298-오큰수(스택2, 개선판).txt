@@ -1,0 +1,57 @@
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.PriorityQueue;
+
+public class Main {
+	static StringBuilder sb = new StringBuilder();
+		static int N;
+	public static void main(String[] args) throws Exception {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		Stack<Integer> stack = new Stack<Integer>();
+		
+		N = Integer.parseInt(br.readLine());
+		int[] arr = new int[N];
+		StringTokenizer s = new StringTokenizer(br.readLine());
+		for(int i=0;i<N;i++) {
+			arr[i] = Integer.parseInt(s.nextToken());
+		}
+		for(int i=0;i<N;i++) {
+			
+			while(!stack.empty()&&arr[stack.peek()]<arr[i]) {
+				arr[stack.pop()] = arr[i];
+			}
+			
+			stack.push(i);
+		}
+		while(!stack.empty()) {
+			arr[stack.pop()] = -1;
+		}
+		
+		for(int i=0;i<N;i++) {
+			sb.append(arr[i]+" ");
+		}
+		System.out.println(sb);
+	}
+	
+}
+
+//함수에서 스택 처리하고 정리 안하고 그대로 반환됨 
+//다시 채워넣는 부분을 clone을 써서 생략함
+//또 시간 초과 알고리즘 자체가 글러먹음
+//stack 2개 X, 이중 포문 x
+//시간제한 빡빢
+//시간 제한 빡빡하면 stack 배열만 써서 풀자 

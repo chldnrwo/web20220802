@@ -1,0 +1,59 @@
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+		static int[] arr;
+		static StringBuilder sb = new StringBuilder();
+		static int N;
+	public static void main(String[] args) throws Exception {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//StringTokenizer st = new StringTokenizer(br.readLine());
+
+		int K = in.nextInt();
+		N = in.nextInt();
+		arr = new int[K];
+		long max=0;
+		for(int i=0;i<K;i++) {
+			arr[i]=in.nextInt();
+			if(arr[i]>max) {
+				max=arr[i];
+			}
+		}
+		max++;
+		check(0,max);
+	}
+	
+	public static void check(long bot, long top) {
+		if(!(bot<top)) {
+			System.out.println(bot-1);
+			System.exit(0);
+		}
+		
+		long mid = (bot+top)/2;
+		//System.out.println(mid);
+		int sum=0;
+		for(int i=0;i<arr.length;i++) {
+			sum+=arr[i]/mid;
+		}
+		
+		if(sum<N) {
+			check(bot,mid);
+		}else {
+			check(mid+1,top);
+		}		
+		
+	}
+}
+
+//개망나니같이 짜놨는데 잘 돌아감

@@ -1,0 +1,84 @@
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+		static StringBuilder sb = new StringBuilder();
+		static int N;
+		static int[] arr;
+		static Integer[] arrS;
+		static int cnt=1;
+	public static void main(String[] args) throws Exception {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//StringTokenizer st = new StringTokenizer(br.readLine());
+
+		N = in.nextInt();
+		arr = new int[N+1];
+		arrS = new Integer[N+1];
+		for(int i=1;i<=N;i++) {
+			arr[i]=in.nextInt();
+		}
+		d();
+		int cnt=0;
+		for(int i=1;i<=N;i++) {
+			if(arrS[i]==null) {
+				break;
+			}
+			cnt++;
+		}
+		System.out.println(cnt);
+	}
+	
+	public static void d() {
+		arrS[0] = 0;
+		for(int i=1;i<=N;i++) {
+			long a = (bs(arr[i]));
+			arrS[(int) a]= arr[i];
+		}
+		//System.out.println("imin");
+		//for(int i=0;i<=N;i++) {
+			//System.out.print(arrS[i]+" ");
+		//}
+	}
+	
+	
+	
+	public static long bs(int a) {
+		long bot = 0;
+		long top = arr.length-1;
+		long mid = 0;
+		while(bot<top) {
+			mid = (bot+top)/2;
+			//System.out.println(bot+"  "+mid+"  "+top);
+			if((arrS[(int)mid]==null)) {
+				top = mid;
+			}else {
+				if(arrS[(int)mid]>=a) {
+					top=mid;
+				}else {
+					bot=mid+1;
+				}
+			
+			}
+		}
+		//System.out.println((cnt++)+" cycle finish");
+		//System.out.println("Last : "+bot+"  "+mid+"  "+top);
+		return bot;
+	}
+	
+}
+
+//Lowerbound 구현 =값을 아래쪽이 가져감
+//Upperbound 구현 =값을 위쪽이 가져감  이외의 코드는 동일
+//1.long처리 안해놓음
+//2.top을 K^2로 놓으면 long이 와도 못담는 경우가 생긴다.

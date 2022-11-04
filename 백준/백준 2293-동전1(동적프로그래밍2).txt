@@ -1,0 +1,53 @@
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.PriorityQueue;
+
+public class Main {
+		static StringBuilder sb = new StringBuilder();
+		static int N,K;
+		static int[] arr;
+		static int[] dp;
+	public static void main(String[] args) throws Exception {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			//입력값 및 배열 생성
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(st.nextToken());
+		K = Integer.parseInt(st.nextToken());
+		arr = new int[N];
+		dp = new int[K+1];
+		for(int i=0;i<N;i++) {
+			arr[i]=Integer.parseInt(br.readLine());
+		}
+		dp[0]=1;
+		
+		dp();
+		//System.out.println(Arrays.toString(dp));
+	}
+	
+	public static void dp() {
+		for(int i=0;i<N;i++) {
+			for(int j=1;j<=K;j++) {
+				if(j>=arr[i]) {
+					dp[j]+=dp[j-arr[i]];
+				}
+			}
+		}
+		System.out.println(dp[K]);
+	}
+	
+	
+	
+}
+
+//

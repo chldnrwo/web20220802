@@ -1,0 +1,94 @@
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.StringTokenizer;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineFactory;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+public class Main {
+	static StringBuilder sb = new StringBuilder();
+	static int[] his;
+
+	public static void main(String[] args) throws Exception {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+
+		int N;
+		while(true) {
+		st = new StringTokenizer(br.readLine(), " ");
+		N = Integer.parseInt(st.nextToken());
+		if (N == 0) {
+			break;
+		}
+		his = new int[N];
+		for (int i = 0; i < N; i++) {
+			his[i] = Integer.parseInt(st.nextToken());
+		}
+		long maxA = cutArea(0, N-1);
+		sb.append(maxA+"\n");
+		}
+		System.out.println(sb);
+
+	}
+
+	public static long cutArea(int bot, int top) {
+		if (bot == top) {
+			return his[top];
+		}
+
+		int mid = (top + bot) / 2;
+		long left = cutArea(bot, mid);
+		long right = cutArea(mid + 1, top);
+
+		long maxArea = Math.max(left, right);
+		maxArea = Math.max(maxArea, expArea(bot, mid, top));
+		return maxArea;
+	}
+
+	public static long expArea(int bot, int mid, int top) {
+		int toLeft = mid;
+		int toRight = mid;
+		long height = his[mid];
+		long maxArea = height;
+		
+		while(bot<toLeft&&toRight<top) {
+			if(his[toLeft-1]>his[toRight+1]) {
+				toLeft--;
+				height = Math.min(his[toLeft], height); 
+			}else {
+				toRight++;
+				height = Math.min(his[toRight], height); 
+			}
+			maxArea = Math.max(maxArea,(toRight-toLeft+1) * height) ;
+		}
+		while(toLeft>bot) {
+			toLeft--;
+			height = Math.min(his[toLeft], height);
+			maxArea = Math.max(maxArea,(toRight-toLeft+1) * height);
+		}
+		while(toRight<top) {
+			toRight++;
+			height = Math.min(his[toRight], height);
+			maxArea = Math.max(maxArea,(toRight-toLeft+1) * height);
+		}
+		
+		return maxArea;
+	}
+
+}

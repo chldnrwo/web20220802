@@ -1,0 +1,70 @@
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.PriorityQueue;
+
+public class Main {
+	static StringBuilder sb = new StringBuilder();
+
+	public static void main(String[] args) throws Exception {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		String a = br.readLine();
+		String b = br.readLine();
+
+		Stack<Character> stack = new Stack<Character>();
+		Stack<Character> stack2 = new Stack<Character>();
+		char[] arr = new char[a.length()];
+		for (int i = 0; i < a.length(); i++) {
+			arr[i] = a.charAt(i);
+		}
+
+		for (int i = 0; i < a.length(); i++) {
+			stack.push(arr[i]);
+			if (stack.size()>=b.length()) {
+				if(isBomb(stack, b)) {
+					for(int k=0;k<b.length();k++) {
+						stack.pop();
+					}
+				}
+
+			}
+		}
+		if (stack.empty()) {
+			sb.append("FRULA");
+		} else {
+			while(!stack.empty()) {
+				stack2.push(stack.pop());
+			}
+			int cycle = stack2.size();
+			for(int i=0;i<cycle;i++) {
+				sb.append(stack2.pop());
+			}
+		}
+		System.out.println(sb);
+	}
+
+	public static boolean isBomb(Stack<Character> stack, String bomb) {
+		for (int index = 0; index < bomb.length(); index++) {
+			if (stack.get(stack.size() - bomb.length() + index) != bomb.charAt(index)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+}
+
+//문자열 함수만 너무 남발한거 같기도
+//예상대로 contains, replace 떄문에 메모리 초과 https://kkoon9.tistory.com/66

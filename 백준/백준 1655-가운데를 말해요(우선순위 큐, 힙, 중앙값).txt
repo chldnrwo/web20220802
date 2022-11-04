@@ -1,0 +1,52 @@
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.PriorityQueue;
+
+public class Main {
+		static StringBuilder sb = new StringBuilder();
+		
+	public static void main(String[] args) throws Exception {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		PriorityQueue<Integer> pqMin = new PriorityQueue<Integer>((x,y)->x-y);
+		PriorityQueue<Integer> pqMax = new PriorityQueue<Integer>((x,y)->y-x);
+		
+		int N = Integer.parseInt(br.readLine());
+		for(int i=1;i<=N;i++) {
+			int a = Integer.parseInt(br.readLine());
+			if(i%2==1) {
+				pqMax.offer(a);
+			}else {
+				pqMin.offer(a);
+			}
+			if(!pqMin.isEmpty()) {
+				if(pqMax.peek()>pqMin.peek()) {
+					int tmpMax = pqMax.poll();
+					int tmpMin = pqMin.poll();
+					pqMax.offer(tmpMin);
+					pqMin.offer(tmpMax);
+				}
+			}
+			sb.append(pqMax.peek()).append("\n");
+		}
+		System.out.println(sb);
+			
+		
+		
+		
+	}
+	
+}
+
+//중앙값은 맥스 민 힙 번갈아가며 넣으면된다

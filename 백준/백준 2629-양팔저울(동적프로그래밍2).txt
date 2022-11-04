@@ -1,0 +1,71 @@
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.PriorityQueue;
+
+public class Main {
+		static StringBuilder sb = new StringBuilder();
+		static boolean[][] dp;
+		static int N;
+		static int arr[];
+	public static void main(String[] args) throws Exception {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			//입력값 및 배열 생성
+		N = Integer.parseInt(br.readLine());
+		arr = new int[N+1];
+		dp = new boolean[31][15001];
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		for(int i=1;i<=N;i++) {
+			arr[i]=Integer.parseInt(st.nextToken());
+		}
+		
+		dp(0,0);
+//		for(int i=1;i<5;i++) {
+//			for(int j=1;j<12;j++) {
+//				System.out.print(dp[i][j]+" ");
+//			}
+//			System.out.println();
+//		}
+		int M = Integer.parseInt(br.readLine());
+		st = new StringTokenizer(br.readLine());
+		for(int i=0;i<M;i++) {
+			int q = Integer.parseInt(st.nextToken());
+			if(q>15000) {
+				sb.append("N").append(" ");
+			}else {
+				if(dp[N][q]==true) {
+					sb.append("Y").append(" ");
+				}else {
+					sb.append("N").append(" ");
+				}
+			}
+		}
+		System.out.println(sb);
+	}
+	public static void dp(int x, int y) {
+		if(dp[x][y]) {
+			return;
+		}
+		dp[x][y] = true;
+		if(x==N) {
+			return;
+		}
+		dp(x+1, y+arr[x+1]);
+		dp(x+1, y);
+		dp(x+1, Math.abs(y-arr[x+1]));
+	}
+	
+	
+}
+
+//함수 중간에 dp[x][y]=0으로 초기화를 안했었음

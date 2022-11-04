@@ -1,0 +1,58 @@
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.PriorityQueue;
+
+public class Main {
+	static StringBuilder sb = new StringBuilder();
+		static int N;
+		static Stack<Integer> stack;
+		static Stack<Integer> stack2;
+	public static void main(String[] args) throws Exception {
+		Scanner in = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		stack = new Stack<Integer>();
+		stack2 = new Stack<Integer>();
+		
+		N = in.nextInt();
+		for(int i=0;i<N;i++) {
+			stack.push(in.nextInt());
+		}
+		for(int i=N-1;i>=0;i--) {
+			st(i);
+		}
+		System.out.println(sb);
+	}
+	public static void st(int num) {
+		for(int i=0;i<num;i++) {
+			stack2.push(stack.pop());
+		}
+		int ruler = stack.peek();
+		while(!stack2.empty()) {
+			
+			if(stack2.peek()>ruler) {
+				sb.append(stack2.peek()+" ");
+				while(!stack2.empty()) {
+					stack.push(stack2.pop());
+				}
+				return;
+			}
+			
+			stack.push(stack2.pop());
+		}
+		sb.append(-1+" ");
+	}
+}
+
+//

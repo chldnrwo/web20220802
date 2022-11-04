@@ -1,0 +1,101 @@
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.StringTokenizer;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineFactory;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+public class Main {
+	 
+	static boolean[][] arr;
+	static int min;
+	static int max;
+	static int K;
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//Scanner in = new Scanner(System.in);
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		
+		int N = Integer.parseInt(st.nextToken());
+		int M = Integer.parseInt(st.nextToken());
+		K = Integer.parseInt(st.nextToken());
+		arr = new boolean[N][M];
+		int[][] accB = new int[N+1][M+1];
+		min = K*K;
+        max=0;
+		// 배열 입력 
+		for (int i = 0; i < N; i++) {
+			String str = br.readLine();
+			for (int j = 0; j < M; j++) {
+				if (str.charAt(j) == 'W') {
+					arr[i][j] = true;		// W일 때는 true 
+				} else {
+					arr[i][j] = false;		// B일 때는 false
+				}
+ 
+			}
+		}
+		boolean TF = arr[0][0];	
+		for (int i = 0; i < N; i++) {
+			int cnt = 0;
+			for (int j = 0; j < M; j++) {
+				if (arr[i][j] != TF) {
+					cnt++;
+				}
+				//accB[i+1][j+1] = cnt;
+				accB[i+1][j+1] = accB[i][j+1]+cnt;
+				TF = (!TF);
+			}
+			
+			if(M%2==0) {
+				TF = !TF;
+			}
+		}
+//		for(int i=0;i<N+1;i++) {
+//			for(int j=0;j<M+1;j++) {
+//				System.out.print(accB[i][j]+" ");
+//			}
+//			System.out.println();
+//		}
+		check(accB, K);
+		int result = Math.min(min,K*K-max);
+		System.out.println(result);
+	}
+	public static void check(int[][] arr, int k) {
+		
+		for(int i=0;i<arr.length-k;i++) {
+			for(int j=0;j<arr[0].length-k;j++) {
+				int sum = arr[i+k][j+k]+arr[i][j]-arr[i][j+k]-arr[i+k][j];
+		
+				if(min>sum) {
+					min=sum;
+				}
+				if(max<sum) {
+					max=sum;
+				}
+			}
+		}
+	}
+	
+	
+}
+
+//실버문제 변형은 시간초과
+//행별 누적합 시간초과
+//버퍼리더
+//2차원배열 누적합
